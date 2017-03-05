@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS publishers (
+  id INTEGER PRIMARY KEY,
+  title VARCHAR(100)
+);
