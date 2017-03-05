@@ -1,13 +1,21 @@
-TRUNCATE TABLE publishers;
-INSERT INTO publishers (id, title) VALUES (1, 'Manning Publications Co.');
-INSERT INTO publishers (id, title) VALUES (2, 'Packt Publishing Ltd.');
-INSERT INTO publishers (id, title) VALUES (3, 'O’Reilly Media, Inc.');
-INSERT INTO publishers (id, title) VALUES (4, 'The Pragmatic Programmers, LLC.');
-INSERT INTO publishers (id, title) VALUES (5, 'Prentice Hall');
+INSERT INTO publishers (id, title) VALUES
+  (1, 'Manning Publications Co.'),
+  (2, 'Packt Publishing Ltd.'),
+  (3, 'O’Reilly Media, Inc.'),
+  (4, 'The Pragmatic Programmers, LLC.'),
+  (5, 'Prentice Hall');
 COMMIT;
 
-TRUNCATE TABLE authors;
-INSERT INTO authors (id, name, full_name) VALUES (1, 'Craig Walls', 'Craig Walls');
-INSERT INTO authors (id, name, full_name) VALUES (2, 'Ron Jeffries', 'Ron Jeffries');
-INSERT INTO authors (id, name, full_name) VALUES (3, 'Cay S. Horstmann', 'Cay S. Horstmann');
+INSERT INTO authors (id, name, full_name) VALUES
+  (1, 'Craig Walls', 'Craig Walls'),
+  (2, 'Ron Jeffries', 'Ron Jeffries'),
+  (3, 'Cay S. Horstmann', 'Cay S. Horstmann');
+COMMIT;
+
+
+INSERT INTO books (id, title, isbn, publisher_id) VALUES
+  (1, 'Core Java Volume I–Fundamentals, 10th Edition', '978-0-13-417730-4', 3),
+  (2, 'The Nature of Software Development', '1-94122-237-4', 4),
+  (3, 'Spring in Action, 4th Edition', '978-1-61729-120-3', 1),
+  (4, 'Spring Boot in Action', '1-61729-254-0', 1);
 COMMIT;
