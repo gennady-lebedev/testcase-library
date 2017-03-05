@@ -2,3 +2,9 @@ CREATE TABLE IF NOT EXISTS publishers (
   id INTEGER PRIMARY KEY,
   title VARCHAR(100)
 );
+
+CREATE TABLE IF NOT EXISTS authors (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(50),
+  full_name VARCHAR(200)
+);

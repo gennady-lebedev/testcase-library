@@ -34,6 +34,7 @@ public class ApplicationTest {
 
     @Test
     public void testData() throws Exception {
-        Assert.assertEquals(3L, jdbc.queryForMap("SELECT count(1) as count FROM publishers").get("count"));
+        Assert.assertEquals(5L, jdbc.queryForMap("SELECT count(1) as count FROM publishers").get("count"));
+        Assert.assertEquals(3L, jdbc.queryForMap("SELECT count(1) as count FROM authors").get("count"));
     }
 }
