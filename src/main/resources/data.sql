@@ -19,3 +19,10 @@ INSERT INTO books (id, title, isbn, publisher_id) VALUES
   (3, 'Spring in Action, 4th Edition', '978-1-61729-120-3', 1),
   (4, 'Spring Boot in Action', '1-61729-254-0', 1);
 COMMIT;
+
+INSERT INTO books_authors (book_id, author_id) VALUES
+  (1, 3),
+  (2, 2),
+  (3, 1),
+  (4, 1);
+COMMIT;

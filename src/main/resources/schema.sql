@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS books_authors;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS publishers;
 DROP TABLE IF EXISTS authors;
@@ -21,3 +22,10 @@ CREATE TABLE IF NOT EXISTS books (
   FOREIGN KEY (publisher_id) REFERENCES publishers,
   UNIQUE (isbn)
 );
+
+CREATE TABLE IF NOT EXISTS books_authors (
+  book_id INTEGER,
+  author_id INTEGER,
+  FOREIGN KEY (book_id) REFERENCES books,
+  FOREIGN KEY (author_id) REFERENCES authors
+)
