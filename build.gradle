@@ -1,0 +1,36 @@
+group 'testcase'
+version '0.1'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile "org.springframework.boot:spring-boot-starter-jetty"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    compile "ch.qos.logback:logback-classic"
+    compile "ch.qos.logback:logback-core"
+    compile "org.slf4j:slf4j-api"
+
+    testCompile("junit:junit")
+}
