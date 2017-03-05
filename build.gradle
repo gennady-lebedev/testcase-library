@@ -38,6 +38,15 @@ task buildDocker(type: Docker, dependsOn: build) {
     }
 }
 
+task dockerUp(type: Exec) {
+    dependsOn 'clean'
+    dependsOn 'build'
+    dependsOn 'buildDocker'
+    tasks.findByName('build').mustRunAfter 'clean'
+    tasks.findByName('buildDocker').mustRunAfter 'build'
+    commandLine 'docker-compose', 'up'
+}
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
@@ -49,6 +58,7 @@ dependencies {
     compile "ch.qos.logback:logback-classic"
     compile "ch.qos.logback:logback-core"
     compile "org.slf4j:slf4j-api"
+    compile "org.postgresql:postgresql:42.0.0"
 
     testCompile("junit:junit")
 }
