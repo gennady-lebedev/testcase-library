@@ -20,8 +20,7 @@ public class TestingDataSourceConfig {
                 .setType(H2)
                 .setScriptEncoding("UTF-8")
                 .ignoreFailedDrops(true)
-                .addScript("schema.sql")
-                //.addScripts("user_data.sql", "country_data.sql")
+                .addScripts("schema.sql", "data.sql")
                 .build();
     }
 }

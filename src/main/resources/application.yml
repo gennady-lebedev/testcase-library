@@ -8,5 +8,5 @@ spring:
     initialize: true
   jpa:
     database: POSTGRESQL
-    hibernate.ddl-auto: create-drop
+    hibernate.ddl-auto: none
     show-sql: true
