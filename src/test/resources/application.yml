@@ -1,5 +1,15 @@
 spring:
+  datasource:
+    platform: postgres
+    url: jdbc:tc:postgresql://postgres-db:5432/postgres
+    username: postgres
+    password: postgres
+    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
+    initialize: true
   jpa:
-    database: H2
+    database: POSTGRESQL
     hibernate.ddl-auto: none
     show-sql: true
+  data:
+    rest:
+      basePath: /api
