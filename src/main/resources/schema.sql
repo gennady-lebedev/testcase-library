@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS items;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS books_authors;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS publishers;
@@ -24,8 +26,23 @@ CREATE TABLE IF NOT EXISTS books (
 );
 
 CREATE TABLE IF NOT EXISTS books_authors (
-  book_id INTEGER,
-  author_id INTEGER,
+  book_id INTEGER NOT NULL,
+  author_id INTEGER NOT NULL,
   FOREIGN KEY (book_id) REFERENCES books,
   FOREIGN KEY (author_id) REFERENCES authors
-)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS items (
+  id INTEGER PRIMARY KEY,
+  book_id INTEGER NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  user_id INTEGER,
+  place VARCHAR(50),
+  FOREIGN KEY (book_id) REFERENCES books,
+  FOREIGN KEY (user_id) REFERENCES users
+);

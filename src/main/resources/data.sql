@@ -26,4 +26,15 @@ INSERT INTO books_authors (book_id, author_id) VALUES
   (3, 1),
   (4, 1)
 ON CONFLICT DO NOTHING;
+
+INSERT INTO users (id, name) VALUES
+  (1, 'Admin'),
+  (2, 'The Great Old Librarian'),
+  (3, 'Dummy Reader'),
+  (4, 'Regular Reader')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO items (id, book_id, status, user_id, place) VALUES
+  (1, 1, 'DRAFT', NULL, NULL)
+ON CONFLICT DO NOTHING;
 COMMIT;

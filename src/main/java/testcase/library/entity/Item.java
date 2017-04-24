@@ -20,4 +20,11 @@ public class Item {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private ItemStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User holder;
+
+    @Column(name = "place")
+    private String place;
 }
