@@ -12,8 +12,7 @@ CREATE TABLE IF NOT EXISTS publishers (
 
 CREATE TABLE IF NOT EXISTS authors (
   id INTEGER PRIMARY KEY,
-  name VARCHAR(50),
-  full_name VARCHAR(200)
+  name VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS books (

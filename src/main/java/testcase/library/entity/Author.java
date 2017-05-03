@@ -17,7 +17,4 @@ public class Author {
 
     @Column(name = "name")
     private String name;
-
-    @Column(name = "full_name")
-    private String fullName;
 }

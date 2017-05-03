@@ -6,10 +6,10 @@ INSERT INTO publishers (id, title) VALUES
   (5, 'Prentice Hall')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO authors (id, name, full_name) VALUES
-  (1, 'Craig Walls', 'Craig Walls'),
-  (2, 'Ron Jeffries', 'Ron Jeffries'),
-  (3, 'Cay S. Horstmann', 'Cay S. Horstmann')
+INSERT INTO authors (id, name) VALUES
+  (1, 'Craig Walls'),
+  (2, 'Ron Jeffries'),
+  (3, 'Cay S. Horstmann')
 ON CONFLICT DO NOTHING;
 
 
