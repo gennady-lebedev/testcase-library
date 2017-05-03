@@ -15,11 +15,11 @@ public class ItemLog {
     private Long id;
 
     @ManyToOne
-    @Column(name = "item_id")
+    @JoinColumn(name = "item_id")
     private Item item;
 
     @ManyToOne
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     private User who; // operator/librarian/admin only
 
     @Temporal(value = TemporalType.TIMESTAMP)
