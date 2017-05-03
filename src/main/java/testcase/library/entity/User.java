@@ -2,16 +2,19 @@ package testcase.library.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
 @Table(name = "users")
-public class User {
+public class User{
     @Id
-    Long id;
+    @GeneratedValue
+    private Long id;
 
-    String name;
+    private String name;
+    private String password;
+
+    @Enumerated(value = EnumType.STRING)
+    private UserRoles role;
 }
