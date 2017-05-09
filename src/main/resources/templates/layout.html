@@ -40,6 +40,20 @@
     <h1>Layout page</h1>
 </div>
 
+<div class="paging" th:fragment="paging(page)">
+    <ul>
+        <li class="first-page">
+            <a href="?page=0">First</a>
+        </li>
+        <li class="current-page">
+            <a th:href="'?page=' + ${page.getNumber()}" th:text="${page.getNumber() + 1}">current</a>
+        </li>
+        <li class="last-page">
+            <a th:href="'?page=' + ${page.getTotalPages() - 1}">Last</a>
+        </li>
+    </ul>
+</div>
+
 <footer class="footer" th:fragment="footer">
     <div class="container">
         <p class="text-muted credit">
