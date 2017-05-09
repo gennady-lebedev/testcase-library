@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Books list')"></head>
+<body>
+
+<nav th:replace="layout :: navbar ('books')"></nav>
+
+<div class="container">
+    <h1>Books list</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>Publisher</th>
+            <th>ISBN</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book: ${books}">
+            <td th:text="${book.getId()}">id</td>
+            <td th:text="${book.getTitle()}">title</td>
+            <td th:text="${book.getAuthors()}">authors</td>
+            <td th:text="${book.getPublisher()}">publisher</td>
+            <td th:text="${book.getIsbn()}">ISBN</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
