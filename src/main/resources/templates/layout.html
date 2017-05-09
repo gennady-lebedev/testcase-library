@@ -3,13 +3,13 @@
 <head th:fragment="head(title)">
     <meta charset="UTF-8"/>
     <title th:text="${title} + ': The Great Library'">Layout page: The Great Library</title>
-    <link href="/css/bootstrap.css" rel="stylesheet"/>
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet"/>
-    <link href="/css/bootstrap-table.css" rel="stylesheet"/>
-    <link href="/css/library.css" rel="stylesheet"/>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/bootstrap-table.js"></script>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap-table.css}" rel="stylesheet"/>
+    <link th:href="@{/css/library.css}" rel="stylesheet"/>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/bootstrap-table.js}"></script>
 </head>
 <body>
 
@@ -21,16 +21,16 @@
 
         <ul class="nav navbar-nav">
             <li th:class="${active == 'books'}? 'active'">
-                <a href="/books">Books</a>
+                <a th:href="@{/books}">Books</a>
             </li>
             <li th:class="${active == 'items'}? 'active'">
-                <a href="/items">Items</a>
+                <a th:href="@{/items}">Items</a>
             </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+                <a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
             </li>
         </ul>
     </div>
