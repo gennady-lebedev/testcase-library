@@ -41,7 +41,7 @@
 </div>
 
 <div class="paging" th:fragment="paging(page)">
-    <ul class="pagination">
+    <ul class="pagination" th:with="current=${page.getNumber() + 1}">
         <li th:if="${!page.isFirst()}">
             <a href="?page=0">&lt;&lt; first</a>
         </li>
@@ -50,10 +50,10 @@
         </li>
 
         <th:block th:each="i: ${#numbers.sequence(1, page.getTotalPages())}">
-            <li th:if="${i == (page.getNumber() + 1)}" class="active">
-                <span th:text="${page.getNumber() + 1}">current page</span>
+            <li th:if="${i == current}" class="active">
+                <span th:text="${current}">current page</span>
             </li>
-            <li th:if="${i != (page.getNumber() + 1)}">
+            <li th:if="${i != current}">
                 <a th:href="'?page=' + ${i - 1}" th:text="${i}">i page</a>
             </li>
         </th:block>
