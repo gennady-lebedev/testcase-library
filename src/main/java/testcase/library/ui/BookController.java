@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.client.HttpClientErrorException;
 import testcase.library.entity.Book;
 import testcase.library.entity.BookRepository;
 
@@ -31,7 +30,7 @@ public class BookController {
     public String getBook(@PathVariable("id") Long id, Model model) {
         Book book = bookRepository.findOne(id);
         if(book == null)
-            throw new RuntimeException("Book not found");
+            return "404";
 
         model.addAttribute("book", book);
         return "book";
