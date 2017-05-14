@@ -14,15 +14,13 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
-    private final UserRepository userRepository;
     private final ItemLogRepository logRepository;
 
     @Autowired
-    public ItemController(ItemRepository itemRepository, AuthorRepository authorRepository, PublisherRepository publisherRepository, UserRepository userRepository, ItemLogRepository logRepository) {
+    public ItemController(ItemRepository itemRepository, AuthorRepository authorRepository, PublisherRepository publisherRepository, ItemLogRepository logRepository) {
         this.itemRepository = itemRepository;
         this.authorRepository = authorRepository;
         this.publisherRepository = publisherRepository;
-        this.userRepository = userRepository;
         this.logRepository = logRepository;
     }
 
@@ -47,12 +45,6 @@ public class ItemController {
     public String getPublishers(Model model, Pageable pageable) {
         model.addAttribute("publishers", publisherRepository.findAll(pageable));
         return "publishers-list";
-    }
-
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String getUsers(Model model, Pageable pageable) {
-        model.addAttribute("users", userRepository.findAll(pageable));
-        return "users-list";
     }
 
     @RequestMapping(value = "/logs", method = RequestMethod.GET)
