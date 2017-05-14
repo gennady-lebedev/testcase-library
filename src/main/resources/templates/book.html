@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head(${book.getTitle()})"></head>
+<body>
+
+<nav th:replace="layout :: navbar ('books')"></nav>
+
+<div class="container">
+    <h1 th:text="${book.getTitle()}">Book page</h1>
+
+    <p>Title: <span th:text="${book.getTitle()}"></span></p>
+    <p>Author: <span th:include="layout :: enlistAuthors(${book.getAuthors()})"></span></p>
+    <p>Publisher: <a
+            th:href="@{/publishers/} + ${book.getPublisher().getId()}"
+            th:text="${book.getPublisher().getTitle()}"></a>
+    </p>
+    <p>ISBN: <span th:text="${book.getIsbn()}"></span></p>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

@@ -12,16 +12,14 @@ import testcase.library.entity.*;
 public class ItemController {
 
     private final ItemRepository itemRepository;
-    private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
     private final UserRepository userRepository;
     private final ItemLogRepository logRepository;
 
     @Autowired
-    public ItemController(ItemRepository itemRepository, BookRepository bookRepository, AuthorRepository authorRepository, PublisherRepository publisherRepository, UserRepository userRepository, ItemLogRepository logRepository) {
+    public ItemController(ItemRepository itemRepository, AuthorRepository authorRepository, PublisherRepository publisherRepository, UserRepository userRepository, ItemLogRepository logRepository) {
         this.itemRepository = itemRepository;
-        this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.publisherRepository = publisherRepository;
         this.userRepository = userRepository;
@@ -37,12 +35,6 @@ public class ItemController {
     public String getItems(Model model, Pageable pageable) {
         model.addAttribute("items", itemRepository.findAll(pageable));
         return "items-list";
-    }
-
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public String getBooks(Model model, Pageable pageable) {
-        model.addAttribute("books", bookRepository.findAll(pageable));
-        return "books-list";
     }
 
     @RequestMapping(value = "/authors", method = RequestMethod.GET)
