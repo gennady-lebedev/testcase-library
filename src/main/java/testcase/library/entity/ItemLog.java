@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "entity_logs")
+@Table(name = "item_logs")
 @Data
 public class ItemLog {
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Publishers list')"></head>
+<body>
+
+<nav th:replace="layout :: navbar ('publishers')"></nav>
+
+<div class="container">
+    <h1>Items list</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="publisher: ${publishers}">
+                <td th:text="${publisher.getId()}">id</td>
+                <td th:text="${publisher.getTitle()}">title</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:replace="layout :: paging(${publishers})"></div>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

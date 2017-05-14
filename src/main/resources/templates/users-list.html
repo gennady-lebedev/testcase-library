@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Users list')"></head>
+<body>
+
+<nav th:replace="layout :: navbar ('users')"></nav>
+
+<div class="container">
+    <h1>Users list</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.getId()}">id</td>
+                <td th:text="${user.getName()}">book title</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:replace="layout :: paging(${users})"></div>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

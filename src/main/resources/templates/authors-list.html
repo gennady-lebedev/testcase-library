@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Authors list')"></head>
+<body>
+
+<nav th:replace="layout :: navbar ('authors')"></nav>
+
+<div class="container">
+    <h1>Authors list</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="author: ${authors}">
+                <td th:text="${author.getId()}">id</td>
+                <td th:text="${author.getName()}">author's name</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:replace="layout :: paging(${authors})"></div>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

@@ -6,19 +6,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import testcase.library.entity.BookRepository;
-import testcase.library.entity.ItemRepository;
+import testcase.library.entity.*;
 
 @Controller
 public class ItemController {
 
     private final ItemRepository itemRepository;
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
+    private final PublisherRepository publisherRepository;
+    private final UserRepository userRepository;
+    private final ItemLogRepository logRepository;
 
     @Autowired
-    public ItemController(ItemRepository itemRepository, BookRepository bookRepository) {
+    public ItemController(ItemRepository itemRepository, BookRepository bookRepository, AuthorRepository authorRepository, PublisherRepository publisherRepository, UserRepository userRepository, ItemLogRepository logRepository) {
         this.itemRepository = itemRepository;
         this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
+        this.publisherRepository = publisherRepository;
+        this.userRepository = userRepository;
+        this.logRepository = logRepository;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -27,8 +34,8 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/items", method = RequestMethod.GET)
-    public String getItems(Model model) {
-        model.addAttribute("items", itemRepository.findAll());
+    public String getItems(Model model, Pageable pageable) {
+        model.addAttribute("items", itemRepository.findAll(pageable));
         return "items-list";
     }
 
@@ -36,5 +43,29 @@ public class ItemController {
     public String getBooks(Model model, Pageable pageable) {
         model.addAttribute("books", bookRepository.findAll(pageable));
         return "books-list";
+    }
+
+    @RequestMapping(value = "/authors", method = RequestMethod.GET)
+    public String getAuthors(Model model, Pageable pageable) {
+        model.addAttribute("authors", authorRepository.findAll(pageable));
+        return "authors-list";
+    }
+
+    @RequestMapping(value = "/publishers", method = RequestMethod.GET)
+    public String getPublishers(Model model, Pageable pageable) {
+        model.addAttribute("publishers", publisherRepository.findAll(pageable));
+        return "publishers-list";
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String getUsers(Model model, Pageable pageable) {
+        model.addAttribute("users", userRepository.findAll(pageable));
+        return "users-list";
+    }
+
+    @RequestMapping(value = "/logs", method = RequestMethod.GET)
+    public String getLogs(Model model, Pageable pageable) {
+        model.addAttribute("logs", logRepository.findAll(pageable));
+        return "logs-list";
     }
 }

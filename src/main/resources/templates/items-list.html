@@ -28,6 +28,8 @@
             </tr>
         </tbody>
     </table>
+
+    <div th:replace="layout :: paging(${items})"></div>
 </div>
 
 <footer th:replace="layout :: footer"></footer>

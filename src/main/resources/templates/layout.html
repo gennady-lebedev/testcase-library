@@ -20,11 +20,23 @@
         </div>
 
         <ul class="nav navbar-nav">
+            <li th:class="${active == 'items'}? 'active'">
+                <a th:href="@{/items}">Items</a>
+            </li>
             <li th:class="${active == 'books'}? 'active'">
                 <a th:href="@{/books}">Books</a>
             </li>
-            <li th:class="${active == 'items'}? 'active'">
-                <a th:href="@{/items}">Items</a>
+            <li th:class="${active == 'authors'}? 'active'">
+                <a th:href="@{/authors}">Authors</a>
+            </li>
+            <li th:class="${active == 'publishers'}? 'active'">
+                <a th:href="@{/publishers}">Publishers</a>
+            </li>
+            <li th:class="${active == 'users'}? 'active'">
+                <a th:href="@{/users}">Users</a>
+            </li>
+            <li th:class="${active == 'logs'}? 'active'">
+                <a th:href="@{/logs}">Logs</a>
             </li>
         </ul>
 

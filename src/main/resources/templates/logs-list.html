@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Logs')"></head>
+<body>
+
+<nav th:replace="layout :: navbar ('logs')"></nav>
+
+<div class="container">
+    <h1>Items list</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Item ID</th>
+            <th>Book title</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="log: ${logs}">
+                <td th:text="${log.getId()}">id</td>
+                <td th:text="${log.getItem().getId()}">Item Id</td>
+                <td th:text="${log.getItem().getBook().getTitle()}">book title</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:replace="layout :: paging(${logs})"></div>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
