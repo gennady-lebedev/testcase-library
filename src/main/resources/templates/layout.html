@@ -41,15 +41,28 @@
 </div>
 
 <div class="paging" th:fragment="paging(page)">
-    <ul>
-        <li class="first-page">
-            <a href="?page=0">First</a>
+    <ul class="pagination">
+        <li th:if="${!page.isFirst()}">
+            <a href="?page=0">&lt;&lt; first</a>
         </li>
-        <li class="current-page">
-            <a th:href="'?page=' + ${page.getNumber()}" th:text="${page.getNumber() + 1}">current</a>
+        <li th:if="${page.hasPrevious()}">
+            <a th:href="'?page=' + ${page.getNumber() - 1}"> &lt; prev</a>
         </li>
-        <li class="last-page">
-            <a th:href="'?page=' + ${page.getTotalPages() - 1}">Last</a>
+
+        <th:block th:each="i: ${#numbers.sequence(1, page.getTotalPages())}">
+            <li th:if="${i == (page.getNumber() + 1)}" class="active">
+                <span th:text="${page.getNumber() + 1}">current page</span>
+            </li>
+            <li th:if="${i != (page.getNumber() + 1)}">
+                <a th:href="'?page=' + ${i - 1}" th:text="${i}">i page</a>
+            </li>
+        </th:block>
+
+        <li th:if="${page.hasNext()}">
+            <a th:href="'?page=' + ${page.getNumber() + 1}">next &gt;</a>
+        </li>
+        <li th:if="${!page.isLast()}">
+            <a th:href="'?page=' + ${page.getTotalPages() - 1}"> last &gt;&gt; </a>
         </li>
     </ul>
 </div>
