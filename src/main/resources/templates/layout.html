@@ -53,7 +53,7 @@
 </div>
 
 <div class="paging" th:fragment="paging(page)">
-    <ul class="pagination" th:with="current=${page.getNumber() + 1}">
+    <ul class="pagination" th:with="current=${page.getNumber() + 1}" th:if="${page.getTotalPages() > 0}">
         <li th:if="${!page.isFirst()}">
             <a href="?page=0">&lt;&lt; first</a>
         </li>
@@ -78,6 +78,13 @@
         </li>
     </ul>
 </div>
+
+<div th:fragment="enlistAuthors(authors)">
+    <span class="authors-list" th:each="author: ${authors}">
+        <a th:href="@{/authors/} + ${author.getId()}" th:text="${author.getName()}">author's name</a>
+    </span>
+</div>
+
 
 <footer class="footer" th:fragment="footer">
     <div class="container">

@@ -21,9 +21,15 @@
         <tbody>
             <tr th:each="item: ${items}">
                 <td th:text="${item.getId()}">id</td>
-                <td th:text="${item.getBook().getTitle()}">book title</td>
+                <td>
+                    <a th:href="@{/books/} + ${item.getBook().getId()}"
+                       th:text="${item.getBook().getTitle()}">book title</a>
+                </td>
                 <td th:text="${item.getStatus()}">status</td>
-                <td th:text="${item.getHolder()}">user name</td>
+                <td>
+                    <a th:href="@{/users/} + ${item.getHolder().getId()}"
+                       th:text="${item.getHolder().getName()}">user name</a>
+                </td>
                 <td th:text="${item.getPlace()}">place</td>
             </tr>
         </tbody>

@@ -22,8 +22,11 @@
         <tr th:each="book: ${books}">
             <td th:text="${book.getId()}">id</td>
             <td th:text="${book.getTitle()}">title</td>
-            <td th:text="${book.getAuthors()}">authors</td>
-            <td th:text="${book.getPublisher()}">publisher</td>
+            <td th:include="layout :: enlistAuthors(${book.getAuthors()})">authors list</td>
+            <td>
+                <a th:href="@{/publishers/} + ${book.getPublisher().getId()}"
+                   th:text="${book.getPublisher().getTitle()}"></a>
+            </td>
             <td th:text="${book.getIsbn()}">ISBN</td>
         </tr>
         </tbody>

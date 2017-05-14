@@ -12,15 +12,23 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Item ID</th>
-            <th>Book title</th>
+            <th>Item</th>
+            <th>Approved by</th>
+            <th>When</th>
         </tr>
         </thead>
         <tbody>
             <tr th:each="log: ${logs}">
                 <td th:text="${log.getId()}">id</td>
-                <td th:text="${log.getItem().getId()}">Item Id</td>
-                <td th:text="${log.getItem().getBook().getTitle()}">book title</td>
+                <td>
+                    <a th:href="@{/items/} + ${log.getItem().getId()}"
+                       th:text="${log.getItem().getBook().getTitle()} + ' #' + ${log.getItem().getId()}"></a>
+                </td>
+                <td>
+                    <a th:href="@{/users/} + ${log.getWho().getId()}"
+                       th:text="${log.getWho().getName()}">approved by</a>
+                </td>
+                <td th:text="${log.getWhen()}">when</td>
             </tr>
         </tbody>
     </table>
