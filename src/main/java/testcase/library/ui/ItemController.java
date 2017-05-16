@@ -6,7 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import testcase.library.entity.*;
+import testcase.library.repository.AuthorRepository;
+import testcase.library.repository.ItemLogRepository;
+import testcase.library.repository.ItemRepository;
+import testcase.library.repository.PublisherRepository;
 
 @Controller
 public class ItemController {

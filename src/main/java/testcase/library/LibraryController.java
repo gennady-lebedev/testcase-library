@@ -1,12 +1,11 @@
 package testcase.library;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.MetricsEndpointMetricReader;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import testcase.library.entity.Item;
-import testcase.library.entity.ItemRepository;
+import testcase.library.repository.ItemRepository;
 
 @RestController
 @RequestMapping("/api")

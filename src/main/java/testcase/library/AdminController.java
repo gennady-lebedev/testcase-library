@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import testcase.library.entity.User;
-import testcase.library.entity.UserRepository;
+import testcase.library.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api/security")

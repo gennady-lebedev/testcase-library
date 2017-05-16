@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import testcase.library.entity.User;
-import testcase.library.entity.UserRepository;
+import testcase.library.repository.UserRepository;
 import testcase.library.entity.UserRoles;
 
 import java.util.List;

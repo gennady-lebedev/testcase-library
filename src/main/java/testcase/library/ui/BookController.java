@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import testcase.library.entity.Book;
-import testcase.library.entity.BookRepository;
+import testcase.library.repository.BookRepository;
 
 @Controller
 @RequestMapping("/books")
