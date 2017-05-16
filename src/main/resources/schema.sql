@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS item_logs;
 DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS books_authors;
@@ -43,5 +44,15 @@ CREATE TABLE IF NOT EXISTS items (
   user_id INTEGER,
   place VARCHAR(50),
   FOREIGN KEY (book_id) REFERENCES books,
+  FOREIGN KEY (user_id) REFERENCES users
+);
+
+CREATE TABLE IF NOT EXISTS item_logs (
+  id INTEGER PRIMARY KEY,
+  item_id INTEGER NOT NULL,
+  user_id INTEGER,
+  "when" TIMESTAMP,
+  what VARCHAR(200),
+  FOREIGN KEY (item_id) REFERENCES items,
   FOREIGN KEY (user_id) REFERENCES users
 );
