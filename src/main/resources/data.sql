@@ -27,11 +27,11 @@ INSERT INTO books_authors (book_id, author_id) VALUES
   (4, 1)
 ON CONFLICT DO NOTHING;
 
-INSERT INTO users (id, name) VALUES
-  (1, 'Admin'),
-  (2, 'The Great Old Librarian'),
-  (3, 'Dummy Reader'),
-  (4, 'Regular Reader')
+INSERT INTO users (id, name, password, role) VALUES
+  (1, 'Admin', '$2a$10$7BdS5724jFiHcMn77jYLte5cOHE9hGPvqiIH7bKJo9kOHSmyAixTO', 'ADMIN'), -- 123
+  (2, 'The Great Old Librarian', '$2a$10$.mkfXM5eDAYeMYfGOO5LGeGQYvk41Byty7hUaJ1r9dzjUTkAZTXum', 'LIBRARIAN'), -- 123
+  (3, 'Dummy Reader', '$2a$10$TiQe.YKwu8EX5roArIY3mewqSUihj6hYAs22Oj4W1SUY.LtiLYp1a', 'READER'), -- 123
+  (4, 'Regular Reader', '$2a$10$nALiN6cco3SftvENnV7VO.63vcF20yaQYIuIdb7Q7GnJL/MuosGsG', 'READER') --345
 ON CONFLICT DO NOTHING;
 
 INSERT INTO items (id, book_id, status, user_id, place) VALUES
