@@ -20,7 +20,10 @@
         </thead>
         <tbody>
         <tr th:each="book: ${books}">
-            <td th:text="${book.getId()}">id</td>
+            <td>
+                <a th:href="@{/books/} + ${book.getId()}"
+                   th:text="${book.getId()}"></a>
+            </td>
             <td th:text="${book.getTitle()}">title</td>
             <td th:include="layout :: enlistAuthors(${book.getAuthors()})">authors list</td>
             <td>
