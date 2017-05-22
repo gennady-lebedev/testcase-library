@@ -16,7 +16,7 @@
     </p>
     <p>ISBN: <span th:text="${book.getIsbn()}"></span></p>
 
-    <form th:action="@{/book/} + ${book.getId()}" method="post" class="form-horizontal">
+    <form th:action="@{/books/} + ${book.getId()}" method="post" class="form-horizontal">
         <div th:replace="layout :: formInput('id', 'ID', 'text', ${book.getId()})"></div>
         <div th:replace="layout :: formInput('title', 'Title', 'text', ${book.getTitle()})"></div>
         <div th:replace="layout :: formInput('publisher', 'Publisher', 'text', ${book.getPublisher().getTitle()})"></div>
