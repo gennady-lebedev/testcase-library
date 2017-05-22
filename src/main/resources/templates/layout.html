@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:fragment="head(title)">
     <meta charset="UTF-8"/>
     <title th:text="${title} + ': The Great Library'">Layout page: The Great Library</title>
@@ -41,13 +42,13 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-            <li th:class="${active == 'login'}? 'active'"  th:if="${#httpServletRequest.remoteUser} == null">
+            <li sec:authorize="isAnonymous()">
                 <a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
             </li>
-            <li th:if="${#httpServletRequest.remoteUser}">
+            <li sec:authorize="isAuthenticated()">
                 <a th:href="@{/user}" th:text="${#httpServletRequest.remoteUser}">User name</a>
             </li>
-            <li th:if="${#httpServletRequest.remoteUser}">
+            <li sec:authorize="isAuthenticated()">
                 <a href="javascript: document.logoutForm.submit()">
                     <span class="glyphicon glyphicon-log-out"></span> Sign out
                 </a>

@@ -62,6 +62,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-thymeleaf"
     compile "org.springframework.boot:spring-boot-starter-security"
 
+    compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity4"
+
     compile "ch.qos.logback:logback-classic"
     compile "ch.qos.logback:logback-core"
     compile "org.slf4j:slf4j-api"
