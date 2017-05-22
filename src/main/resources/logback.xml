@@ -8,8 +8,10 @@
     </appender>
 
     <logger name="testcase.library" level="TRACE"/>
+    <logger name="org.springframework.security" level="WARN"/>
+    <logger name="org.hibernate" level="WARN"/>
 
-    <root level="info">
+    <root level="WARN">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
