@@ -71,6 +71,16 @@
             <input th:type="${type}" th:name="${name}" th:id="${name}" th:title="${title}" th:value="${value}? ${value} : ''" class="form-control"/>
         </div>
     </div>
+    <div class="form-group" th:fragment="objectInput(name, title, type, value)" th:with="hasErrors=${#fields.hasErrors('__${name}__')}" th:classappend="${hasErrors} ? 'has-error has-feedback'">
+        <label class="control-label col-sm-2" th:attr="for=${name}" th:text="${title} + ': '">label: </label>
+        <div class="col-sm-4">
+            <input th:type="${type}" th:name="${name}" th:id="${name}" th:value="${value}" th:title="${title}" class="form-control"/>
+            <span class="glyphicon form-control-feedback" th:classappend="${hasErrors} ? 'glyphicon-remove'"></span>
+            <div class="feedback" th:if="${hasErrors}">
+                <span th:each="error: ${#fields.errors('__${name}__')}" th:text="${error}">Errors</span>
+            </div>
+        </div>
+    </div>
     <div class="form-group" th:fragment="formButton(title)">
         <label class="control-label col-sm-2"></label>
         <div class="col-sm-2">
