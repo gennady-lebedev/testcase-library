@@ -4,11 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import testcase.library.entity.Author;
 import testcase.library.repository.AuthorRepository;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/authors")
@@ -34,5 +38,16 @@ public class AuthorController {
 
         model.addAttribute("author", author);
         return "author";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public String updateAuthor(@Valid Author author, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("author", author);
+            return "author";
+        }
+
+        Author saved = repository.save(author);
+        return "redirect:/authors/" + saved.getId();
     }
 }
