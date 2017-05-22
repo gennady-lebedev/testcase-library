@@ -14,17 +14,7 @@
         <div th:replace="layout :: objectInput('id', 'ID', 'text', *{id})"></div>
         <div th:replace="layout :: objectInput('name', 'Name', 'text', *{name})"></div>
 
-        <div class="form-group">
-            <label class="control-label col-sm-2"></label>
-            <div class="col-sm-4">
-                <button type="submit" class="btn btn-primary">
-                    <i class="glyphicon glyphicon-save"></i> Save
-                </button>
-                <a th:href="@{/authors/} + ${author.getId()}" class="btn btn-warning">
-                    <i class="glyphicon glyphicon-no"></i> Cancel
-                </a>
-            </div>
-        </div>
+        <div th:replace="layout :: objectButtons(@{/authors/} + ${author.getId()})"></div>
     </form>
 </div>
 
