@@ -41,8 +41,19 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-            <li th:class="${active == 'login'}? 'active'">
+            <li th:class="${active == 'login'}? 'active'"  th:if="${#httpServletRequest.remoteUser} == null">
                 <a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+            </li>
+            <li th:if="${#httpServletRequest.remoteUser}">
+                <a th:href="@{/user}" th:text="${#httpServletRequest.remoteUser}">User name</a>
+            </li>
+            <li th:if="${#httpServletRequest.remoteUser}">
+                <a href="javascript: document.logoutForm.submit()">
+                    <span class="glyphicon glyphicon-log-out"></span> Sign out
+                </a>
+                <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                    <input hidden="hidden" type="submit" value="Sign Out"/>
+                </form>
             </li>
         </ul>
     </div>
