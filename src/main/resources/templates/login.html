@@ -6,18 +6,19 @@
 <nav th:replace="layout :: navbar ('login')"></nav>
 
 <div class="container">
-    <h1>Login page</h1>
+    <h1>Sign in</h1>
 
-    <div th:if="${param.error}">
-        Invalid username and password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
     <form th:action="@{/login}" method="post" class="form-horizontal">
         <div th:replace="layout :: formInput('username', 'User name', 'text', '')"></div>
         <div th:replace="layout :: formInput('password', 'Password', 'password', '')"></div>
-        <div th:replace="layout :: formButton('Sign in')"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2"></label>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-user"></i> Sign in
+                </button>
+            </div>
+        </div>
     </form>
 </div>
 

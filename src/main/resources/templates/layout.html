@@ -67,13 +67,13 @@
 <form th:action="@{/test}" method="post" class="form-horizontal">
     <div class="form-group" th:fragment="formInput(name, title, type, value)">
         <label class="control-label col-sm-2" th:attr="for=${name}" th:text="${title} + ': '">title: </label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
             <input th:type="${type}" th:name="${name}" th:id="${name}" th:title="${title}" th:value="${value}? ${value} : ''" class="form-control"/>
         </div>
     </div>
     <div class="form-group" th:fragment="formButton(title)">
         <label class="control-label col-sm-2"></label>
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             <input type="submit" th:value="${title}" class="btn btn-primary form-control"/>
         </div>
     </div>
