@@ -17,36 +17,11 @@
     <p>ISBN: <span th:text="${book.getIsbn()}"></span></p>
 
     <form th:action="@{/book/} + ${book.getId()}" method="post" class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="id">ID:</label>
-            <div class="col-sm-10">
-                <input type="text" name="id" th:value="${book.getId()}" title="ID" class="form-control"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="title">Title:</label>
-            <div class="col-sm-10">
-                <input type="text" name="title" th:value="${book.getTitle()}" class="form-control"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="publisher">Publisher:</label>
-            <div class="col-sm-10">
-                <input type="text" name="publisher" th:value="${book.getPublisher().getTitle()}" title="Publisher" class="form-control"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="authors">Authors:</label>
-            <div class="col-sm-10">
-                <input type="text" name="authors" th:value="${book.getAuthors()}" class="form-control"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="isbn">ISBN:</label>
-            <div class="col-sm-10">
-                <input type="text" name="isbn" th:value="${book.getIsbn()}" class="form-control"/>
-            </div>
-        </div>
+        <div th:replace="layout :: formInput('id', 'ID', 'text', ${book.getId()})"></div>
+        <div th:replace="layout :: formInput('title', 'Title', 'text', ${book.getTitle()})"></div>
+        <div th:replace="layout :: formInput('publisher', 'Publisher', 'text', ${book.getPublisher().getTitle()})"></div>
+        <div th:replace="layout :: formInput('authors', 'Authors', 'text', ${book.getAuthors()})"></div>
+        <div th:replace="layout :: formInput('isbn', 'ISBN', 'text', ${book.getIsbn()})"></div>
     </form>
 </div>
 
