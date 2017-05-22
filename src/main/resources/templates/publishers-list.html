@@ -6,7 +6,7 @@
 <nav th:replace="layout :: navbar ('publishers')"></nav>
 
 <div class="container">
-    <h1>Items list</h1>
+    <h1>Publishers list</h1>
 
     <table class="table table-hover">
         <thead>
@@ -17,7 +17,10 @@
         </thead>
         <tbody>
             <tr th:each="publisher: ${publishers}">
-                <td th:text="${publisher.getId()}">id</td>
+                <td>
+                    <a th:href="@{/publishers/} + ${publisher.getId()}"
+                       th:text="${publisher.getId()}"></a>
+                </td>
                 <td th:text="${publisher.getTitle()}">title</td>
             </tr>
         </tbody>
