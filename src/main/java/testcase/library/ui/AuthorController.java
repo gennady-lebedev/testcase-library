@@ -26,7 +26,7 @@ public class AuthorController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getAuthors(Model model, Pageable pageable) {
-        model.addAttribute("books", repository.findAll(pageable));
+        model.addAttribute("authors", repository.findAll(pageable));
         return "authors-list";
     }
 
@@ -42,6 +42,23 @@ public class AuthorController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String updateAuthor(@Valid Author author, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("author", author);
+            return "author";
+        }
+
+        Author saved = repository.save(author);
+        return "redirect:/authors/" + saved.getId();
+    }
+
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    public String newAuthorPage(Model model) {
+        model.addAttribute(new Author());
+        return "author";
+    }
+
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    public String newAuthor(@Valid Author author, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("author", author);
             return "author";

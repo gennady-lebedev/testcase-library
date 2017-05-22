@@ -11,20 +11,20 @@
     <p>Name: <span th:text="${author.getName()}"></span></p>
 
     <form th:action="@{/authors/} + ${author.getId()}" th:object="${author}" method="post" class="form-horizontal">
-        <div class="form-group">
+        <div class="form-group" th:classappend="${#fields.hasErrors('id')} ? 'has-error has-feedback'">
             <label class="control-label col-sm-2" for="id">ID: </label>
             <div class="col-sm-4">
                 <input type="text" th:field="*{id}" title="ID" class="form-control"/>
-            </div>
-            <div class="col-sm-4" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">
+                <span class="glyphicon form-control-feedback" th:classappend="${#fields.hasErrors('id')} ? 'glyphicon-remove'"></span>
+                <div class="feedback" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error has-feedback'">
             <label class="control-label col-sm-2" for="name">Name: </label>
             <div class="col-sm-4">
                 <input type="text" th:field="*{name}" title="Name" class="form-control"/>
-            </div>
-            <div class="col-sm-4" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                <span class="glyphicon form-control-feedback" th:classappend="${#fields.hasErrors('name')} ? 'glyphicon-remove'"></span>
+                <div class="feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
             </div>
         </div>
 
@@ -34,9 +34,9 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="glyphicon glyphicon-save"></i> Save
                 </button>
-                <button type="submit" class="btn btn-warning">
+                <a th:href="@{/authors/} + ${author.getId()}" class="btn btn-warning">
                     <i class="glyphicon glyphicon-no"></i> Cancel
-                </button>
+                </a>
             </div>
         </div>
     </form>
