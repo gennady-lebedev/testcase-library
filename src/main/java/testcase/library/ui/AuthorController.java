@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import testcase.library.entity.Author;
 import testcase.library.repository.AuthorRepository;
 
@@ -40,7 +39,7 @@ public class AuthorController {
         return "author";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String updateAuthor(@Valid Author author, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("author", author);
@@ -55,16 +54,5 @@ public class AuthorController {
     public String newAuthorPage(Model model) {
         model.addAttribute(new Author());
         return "author";
-    }
-
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String newAuthor(@Valid Author author, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("author", author);
-            return "author";
-        }
-
-        Author saved = repository.save(author);
-        return "redirect:/authors/" + saved.getId();
     }
 }
