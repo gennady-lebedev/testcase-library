@@ -17,7 +17,10 @@
         </thead>
         <tbody>
             <tr th:each="author: ${authors}">
-                <td th:text="${author.getId()}">id</td>
+                <td>
+                    <a th:href="@{/authors/} + ${author.getId()}"
+                       th:text="${author.getId()}"></a>
+                </td>
                 <td th:text="${author.getName()}">author's name</td>
             </tr>
         </tbody>

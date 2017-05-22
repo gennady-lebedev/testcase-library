@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head(${author.getName()})"></head>
+<body>
+
+<nav th:replace="layout :: navbar ('authors')"></nav>
+
+<div class="container">
+    <h1 th:text="${author.getName()}">Author page</h1>
+
+    <p>Name: <span th:text="${author.getName()}"></span></p>
+
+    <form th:action="@{/authors/} + ${author.getId()}" method="post" class="form-horizontal">
+        <div th:replace="layout :: formInput('id', 'ID', 'text', ${author.getId()})"></div>
+        <div th:replace="layout :: formInput('name', 'Name', 'text', ${author.getName()})"></div>
+    </form>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
