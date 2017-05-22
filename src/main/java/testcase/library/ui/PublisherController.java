@@ -50,6 +50,7 @@ public class PublisherController {
         return "redirect:/publishers/" + saved.getId();
     }
 
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newPublisher(Model model) {
         model.addAttribute("publisher", new Publisher());
         return "publisher";
