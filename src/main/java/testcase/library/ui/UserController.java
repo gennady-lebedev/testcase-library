@@ -58,12 +58,17 @@ public class UserController {
         }
 
         if(user.getId() != null) {
-            User found = repository.findOne(user.getId());
-            if(found != null) {
-                user.setPassword(found.getPassword());
+            if(user.getPassword() == null) {
+                User found = repository.findOne(user.getId());
+                if (found != null) {
+                    user.setPassword(found.getPassword());
+                }
             } else {
+                //TODO add security check with an old password
                 user.setPassword(encoder.encode(user.getPassword()));
             }
+        } else {
+            user.setPassword(encoder.encode(user.getPassword()));
         }
         User saved = repository.save(user);
         return "redirect:/users/" + saved.getId();
