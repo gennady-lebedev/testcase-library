@@ -87,7 +87,7 @@
     <div class="form-group" th:fragment="objectMultiSelector(name, title, values, options)" th:with="hasErrors=false" th:classappend="${hasErrors} ? 'has-error has-feedback'">
         <label class="control-label col-sm-2" th:attr="for=${name}" th:text="${title} + ': '">label: </label>
         <div class="col-sm-4">
-            <select th:name="${name}" th:id="${name}" th:title="${title}" class="form-control" multiple="multiple">
+            <select th:name="${name}" th:id="${name}" th:title="${title}" class="selectpicker form-control" multiple="multiple">
                 <option
                         th:each="o: ${options}"
                         th:text="${o.getName()}"
@@ -106,7 +106,7 @@
     <div class="form-group" th:fragment="objectSelector(name, title, value, options)" th:with="hasErrors=false" th:classappend="${hasErrors} ? 'has-error has-feedback'">
         <label class="control-label col-sm-2" th:attr="for=${name}" th:text="${title} + ': '">label: </label>
         <div class="col-sm-4">
-            <select th:name="${name}" th:id="${name}" th:title="${title}" class="form-control">
+            <select th:name="${name}" th:id="${name}" th:title="${title}" class="selectpicker form-control">
                 <option
                         th:each="o: ${options}"
                         th:text="${o.getTitle()}"
