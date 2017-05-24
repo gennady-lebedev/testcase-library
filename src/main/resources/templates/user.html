@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head(${user.getName()})"></head>
+<!--/*@thymesVar id="user" type="testcase.library.entity.User"*/-->
+<head th:replace="layout :: head(${user.name})"></head>
 <body>
 
 <nav th:replace="layout :: navbar ('users')"></nav>
 
 <div class="container">
-    <h1 th:text="${user.getName()}">User page</h1>
+    <h1 th:text="${user.name}">User page</h1>
 
-    <p>Name: <span th:text="${user.getName()}"></span></p>
-    <p>Role: <span th:text="${user.getRole()}"></span></p>
+    <p>Name: <span th:text="${user.name}"></span></p>
+    <p>Role: <span th:text="${user.role}"></span></p>
 
     <form th:action="@{/users}" th:object="${user}" method="post" class="form-horizontal">
         <div th:replace="layout :: objectInput('id', 'ID', 'text', *{id})"></div>
         <div th:replace="layout :: objectInput('name', 'Name', 'text', *{name})"></div>
         <div th:replace="layout :: objectInput('role', 'Role', 'text', *{role})"></div>
-        <th:block th:if="${user.getId()} == null">
-            <div th:replace="layout :: objectInput('password', 'Password', 'password', *{password})"></div>
+        <th:block th:if="${user.id} == null">
+            <div th:replace="layout :: objectInput('password', 'Password', 'password', '')"></div>
         </th:block>
 
-        <div th:replace="layout :: objectButtons(@{/users/} + ${user.getId()})"></div>
+        <div th:replace="layout :: objectButtons(@{/users/} + ${user.id})"></div>
     </form>
 </div>
 

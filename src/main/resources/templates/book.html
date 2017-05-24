@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head(${book.getTitle()})"></head>
+<!--/*@thymesVar id="book" type="testcase.library.entity.Book"*/-->
+<head th:replace="layout :: head(${book.title})"></head>
 <body>
 
 <nav th:replace="layout :: navbar ('books')"></nav>
 
 <div class="container">
-    <h1 th:text="${book.getTitle()}">Book page</h1>
+    <h1 th:text="${book.title}">Book page</h1>
 
-    <p>Title: <span th:text="${book.getTitle()}"></span></p>
-    <p>Author: <span th:include="layout :: enlistAuthors(${book.getAuthors()})"></span></p>
+    <p>Title: <span th:text="${book.title}"></span></p>
+    <p>Author: <span th:include="layout :: enlistAuthors(${book.authors})"></span></p>
     <p>Publisher: <a
-            th:if="${book.getPublisher()}"
-            th:href="@{/publishers/} + ${book.getPublisher().getId()}"
-            th:text="${book.getPublisher().getTitle()}"></a>
+            th:if="${book.publisher}"
+            th:href="@{/publishers/} + ${book.publisher.id}"
+            th:text="${book.publisher.title}"></a>
     </p>
-    <p>ISBN: <span th:text="${book.getIsbn()}"></span></p>
+    <p>ISBN: <span th:text="${book.isbn}"></span></p>
 
     <form th:action="@{/books/}" th:object="${book}" method="post" class="form-horizontal">
         <div th:replace="layout :: formInput('id', 'ID', 'text', *{id})"></div>
@@ -24,7 +25,7 @@
         <div th:replace="layout :: objectMultiSelector('authors', 'Authors', *{authors}, ${authors})"></div>
         <div th:replace="layout :: formInput('isbn', 'ISBN', 'text', *{isbn})"></div>
 
-        <div th:replace="layout :: objectButtons(@{/books/} + ${book.getId()})"></div>
+        <div th:replace="layout :: objectButtons(@{/books/} + ${book.id})"></div>
     </form>
 </div>
 

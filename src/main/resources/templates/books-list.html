@@ -19,18 +19,21 @@
         </tr>
         </thead>
         <tbody>
+        <!--/*@thymesVar id="books" type="java.util.List<testcase.library.entity.Book>"*/-->
         <tr th:each="book: ${books}">
             <td>
-                <a th:href="@{/books/} + ${book.getId()}"
-                   th:text="${book.getId()}"></a>
+                <span th:text="${book.id}">ID</span>
             </td>
-            <td th:text="${book.getTitle()}">title</td>
-            <td th:include="layout :: enlistAuthors(${book.getAuthors()})">authors list</td>
+            <td >
+                <a th:href="@{/books/} + ${book.id}"
+                   th:text="${book.title}">Book link</a>
+            </td>
+            <td th:include="layout :: enlistAuthors(${book.authors})">Authors links</td>
             <td>
-                <a th:href="@{/publishers/} + ${book.getPublisher().getId()}"
-                   th:text="${book.getPublisher().getTitle()}"></a>
+                <a th:href="@{/publishers/} + ${book.publisher.id}"
+                   th:text="${book.publisher.title}">Publisher link</a>
             </td>
-            <td th:text="${book.getIsbn()}">ISBN</td>
+            <td th:text="${book.isbn}">ISBN</td>
         </tr>
         </tbody>
     </table>

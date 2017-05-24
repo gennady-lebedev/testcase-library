@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head('Logs')"></head>
+<head th:replace="layout :: head('Item Logs')"></head>
 <body>
 
 <nav th:replace="layout :: navbar ('logs')"></nav>
@@ -18,17 +18,18 @@
         </tr>
         </thead>
         <tbody>
+        <!--/*@thymesVar id="logs" type="java.util.List<testcase.library.entity.ItemLog>"*/-->
             <tr th:each="log: ${logs}">
-                <td th:text="${log.getId()}">id</td>
+                <td th:text="${log.id}">ID</td>
                 <td>
-                    <a th:href="@{/items/} + ${log.getItem().getId()}"
-                       th:text="${log.getItem().getBook().getTitle()} + ' #' + ${log.getItem().getId()}"></a>
+                    <a th:href="@{/items/} + ${log.item.id}"
+                       th:text="${log.item.book.title} + ' #' + ${log.item.id}">Item link</a>
                 </td>
                 <td>
-                    <a th:href="@{/users/} + ${log.getWho().getId()}"
-                       th:text="${log.getWho().getName()}">approved by</a>
+                    <a th:href="@{/users/} + ${log.who.id}"
+                       th:text="${log.who.name}">Approved by</a>
                 </td>
-                <td th:text="${log.getWhen()}">when</td>
+                <td th:text="${log.when}">When</td>
             </tr>
         </tbody>
     </table>

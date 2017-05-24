@@ -16,12 +16,15 @@
         </tr>
         </thead>
         <tbody>
+        <!--/*@thymesVar id="publishers" type="java.util.List<testcase.library.entity.Publisher>"*/-->
             <tr th:each="publisher: ${publishers}">
                 <td>
-                    <a th:href="@{/publishers/} + ${publisher.getId()}"
-                       th:text="${publisher.getId()}"></a>
+                    <span th:text="${publisher.id}">ID</span>
                 </td>
-                <td th:text="${publisher.getTitle()}">title</td>
+                <td>
+                    <a th:href="@{/publishers/} + ${publisher.id}"
+                    th:text="${publisher.title}">Publisher link</a>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -20,21 +20,22 @@
         </tr>
         </thead>
         <tbody>
+        <!--/*@thymesVar id="items" type="java.util.List<testcase.library.entity.Item>"*/-->
             <tr th:each="item: ${items}">
                 <td>
-                    <a th:href="@{/items/} + ${item.getId()}"
-                       th:text="${item.getId()}"></a>
+                    <a th:href="@{/items/} + ${item.id}"
+                       th:text="'#' + ${item.id}">Item Link</a>
                 </td>
                 <td>
-                    <a th:href="@{/books/} + ${item.getBook().getId()}"
-                       th:text="${item.getBook().getTitle()}">book title</a>
+                    <a th:href="@{/books/} + ${item.book.id}"
+                       th:text="${item.book.title}">Book link</a>
                 </td>
-                <td th:text="${item.getStatus()}">status</td>
+                <td th:text="${item.status}">STATUS</td>
                 <td sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')">
-                    <a th:href="@{/users/} + ${item.getHolder().getId()}"
-                       th:text="${item.getHolder().getName()}">user name</a>
+                    <a th:href="@{/users/} + ${item.holder.id}"
+                       th:text="${item.holder.name}">Bser name</a>
                 </td>
-                <td th:text="${item.getPlace()}">place</td>
+                <td th:text="${item.place}">place</td>
             </tr>
         </tbody>
     </table>

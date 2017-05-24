@@ -18,10 +18,12 @@
         <tbody>
             <tr th:each="author: ${authors}">
                 <td>
-                    <a th:href="@{/authors/} + ${author.getId()}"
-                       th:text="${author.getId()}"></a>
+                    <span th:text="${author.id}">ID</span>
                 </td>
-                <td th:text="${author.getName()}">author's name</td>
+                <td>
+                    <a th:href="@{/authors/} + ${author.id}"
+                       th:text="${author.name}">Author's link</a>
+                </td>
             </tr>
         </tbody>
     </table>

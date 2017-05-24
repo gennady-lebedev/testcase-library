@@ -17,13 +17,16 @@
         </tr>
         </thead>
         <tbody>
+        <!--/*@thymesVar id="users" type="java.util.List<testcase.library.entity.User>"*/-->
             <tr th:each="user: ${users}">
                 <td>
-                    <a th:href="@{/users/} + ${user.getId()}"
-                       th:text="${user.getId()}"></a>
+                    <span th:text="${user.id}"></span>
                 </td>
-                <td th:text="${user.getName()}">user name</td>
-                <td th:text="${user.getRole()}">role</td>
+                <td>
+                    <a th:href="@{/users/} + ${user.id}"
+                       th:text="${user.name}">User link</a>
+                </td>
+                <td th:text="${user.role}">Role</td>
             </tr>
         </tbody>
     </table>

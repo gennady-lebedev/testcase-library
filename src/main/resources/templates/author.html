@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head(${author.getName()})"></head>
+<head th:replace="layout :: head(${author.name})"></head>
 <body>
 
 <nav th:replace="layout :: navbar ('authors')"></nav>
 
 <div class="container">
-    <h1 th:text="${author.getName()}">Author page</h1>
+    <h1 th:text="${author.name}">Author page</h1>
 
-    <p>Name: <span th:text="${author.getName()}"></span></p>
+    <p>Name: <span th:text="${author.name}"></span></p>
 
     <form th:action="@{/authors}" th:object="${author}" method="post" class="form-horizontal">
         <div th:replace="layout :: objectInput('id', 'ID', 'text', *{id})"></div>
         <div th:replace="layout :: objectInput('name', 'Name', 'text', *{name})"></div>
 
-        <div th:replace="layout :: objectButtons(@{/authors/} + ${author.getId()})"></div>
+        <div th:replace="layout :: objectButtons(@{/authors/} + ${author.id})"></div>
     </form>
 </div>
 

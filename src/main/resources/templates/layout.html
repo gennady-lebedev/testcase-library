@@ -90,8 +90,8 @@
             <select th:name="${name}" th:id="${name}" th:title="${title}" class="selectpicker form-control" multiple="multiple" data-live-search="true">
                 <option
                         th:each="o: ${options}"
-                        th:text="${o.getName()}"
-                        th:value="${o.getId()}"
+                        th:text="${o.name}"
+                        th:value="${o.id}"
                         th:selected="${values} != null ? ${values.contains(o)}">
                     option
                 </option>
@@ -109,8 +109,8 @@
             <select th:name="${name}" th:id="${name}" th:title="${title}" class="selectpicker form-control" data-live-search="true">
                 <option
                         th:each="o: ${options}"
-                        th:text="${o.getTitle()}"
-                        th:value="${o.getId()}"
+                        th:text="${o.title}"
+                        th:value="${o.id}"
                         th:selected="${value} == ${o}">
                     option
                 </option>
@@ -170,8 +170,8 @@
 
 <div th:fragment="enlistAuthors(authors)">
     <span class="authors-list" th:each="author: ${authors}">
-        <a th:href="@{/authors/} + ${author.getId()}" th:text="${author.getName()}">author's name</a>
-    </span>
+        <a th:href="@{/authors/} + ${author.id}" th:text="${author.name}">author's name</a>
+    </span><br/>
 </div>
 
 

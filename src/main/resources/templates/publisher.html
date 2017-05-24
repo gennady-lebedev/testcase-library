@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head(${publisher.getTitle()})"></head>
+<!--/*@thymesVar id="publisher" type="testcase.library.entity.Publisher"*/-->
+<head th:replace="layout :: head(${publisher.title})"></head>
 <body>
 
 <nav th:replace="layout :: navbar ('publishers')"></nav>
 
 <div class="container">
-    <h1 th:text="${publisher.getTitle()}">Publisher page</h1>
+    <h1 th:text="${publisher.title}">Publisher page</h1>
 
-    <p>Title: <span th:text="${publisher.getTitle()}"></span></p>
+    <p>Title: <span th:text="${publisher.title}"></span></p>
 
     <form th:action="@{/publishers}" th:object="${publisher}" method="post" class="form-horizontal">
         <div th:replace="layout :: objectInput('id', 'ID', 'text', *{id})"></div>
         <div th:replace="layout :: objectInput('title', 'Title', 'text', *{title})"></div>
 
-        <div th:replace="layout :: objectButtons(@{/publishers/} + ${publisher.getId()})"></div>
+        <div th:replace="layout :: objectButtons(@{/publishers/} + ${publisher.id})"></div>
     </form>
 </div>
 
