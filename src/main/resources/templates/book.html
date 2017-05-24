@@ -11,17 +11,20 @@
     <p>Title: <span th:text="${book.getTitle()}"></span></p>
     <p>Author: <span th:include="layout :: enlistAuthors(${book.getAuthors()})"></span></p>
     <p>Publisher: <a
+            th:if="${book.getPublisher()}"
             th:href="@{/publishers/} + ${book.getPublisher().getId()}"
             th:text="${book.getPublisher().getTitle()}"></a>
     </p>
     <p>ISBN: <span th:text="${book.getIsbn()}"></span></p>
 
-    <form th:action="@{/books/} + ${book.getId()}" method="post" class="form-horizontal">
-        <div th:replace="layout :: formInput('id', 'ID', 'text', ${book.getId()})"></div>
-        <div th:replace="layout :: formInput('title', 'Title', 'text', ${book.getTitle()})"></div>
-        <div th:replace="layout :: formInput('publisher', 'Publisher', 'text', ${book.getPublisher().getTitle()})"></div>
-        <div th:replace="layout :: formInput('authors', 'Authors', 'text', ${book.getAuthors()})"></div>
-        <div th:replace="layout :: formInput('isbn', 'ISBN', 'text', ${book.getIsbn()})"></div>
+    <form th:action="@{/books/}" th:object="${book}" method="post" class="form-horizontal">
+        <div th:replace="layout :: formInput('id', 'ID', 'text', *{id})"></div>
+        <div th:replace="layout :: formInput('title', 'Title', 'text', *{title})"></div>
+        <div th:replace="layout :: objectSelector('publisher', 'Publisher', *{publisher}, ${publishers})"></div>
+        <div th:replace="layout :: objectMultiSelector('authors', 'Authors', *{authors}, ${authors})"></div>
+        <div th:replace="layout :: formInput('isbn', 'ISBN', 'text', *{isbn})"></div>
+
+        <div th:replace="layout :: objectButtons(@{/books/} + ${book.getId()})"></div>
     </form>
 </div>
 

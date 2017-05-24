@@ -6,10 +6,12 @@
     <title th:text="${title} + ': The Great Library'">Layout page: The Great Library</title>
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
     <link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap-select.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/bootstrap-table.css}" rel="stylesheet"/>
     <link th:href="@{/css/library.css}" rel="stylesheet"/>
     <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/bootstrap-select.min.js}"></script>
     <script th:src="@{/js/bootstrap-table.js}"></script>
 </head>
 <body>
@@ -81,6 +83,45 @@
             </div>
         </div>
     </div>
+
+    <div class="form-group" th:fragment="objectMultiSelector(name, title, values, options)" th:with="hasErrors=false" th:classappend="${hasErrors} ? 'has-error has-feedback'">
+        <label class="control-label col-sm-2" th:attr="for=${name}" th:text="${title} + ': '">label: </label>
+        <div class="col-sm-4">
+            <select th:name="${name}" th:id="${name}" th:title="${title}" class="form-control" multiple="multiple">
+                <option
+                        th:each="o: ${options}"
+                        th:text="${o.getName()}"
+                        th:value="${o.getId()}"
+                        th:selected="${values} != null ? ${values.contains(o)}">
+                    option
+                </option>
+            </select>
+            <span class="glyphicon form-control-feedback" th:classappend="${hasErrors} ? 'glyphicon-remove'"></span>
+            <div class="feedback" th:if="${hasErrors}">
+                <span th:each="error: ${#fields.errors('__${name}__')}" th:text="${error}">Errors</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" th:fragment="objectSelector(name, title, value, options)" th:with="hasErrors=false" th:classappend="${hasErrors} ? 'has-error has-feedback'">
+        <label class="control-label col-sm-2" th:attr="for=${name}" th:text="${title} + ': '">label: </label>
+        <div class="col-sm-4">
+            <select th:name="${name}" th:id="${name}" th:title="${title}" class="form-control">
+                <option
+                        th:each="o: ${options}"
+                        th:text="${o.getTitle()}"
+                        th:value="${o.getId()}"
+                        th:selected="${value} == ${o}">
+                    option
+                </option>
+            </select>
+            <span class="glyphicon form-control-feedback" th:classappend="${hasErrors} ? 'glyphicon-remove'"></span>
+            <div class="feedback" th:if="${hasErrors}">
+                <span th:each="error: ${#fields.errors('__${name}__')}" th:text="${error}">Errors</span>
+            </div>
+        </div>
+    </div>
+
     <div class="form-group" th:fragment="formButton(title)">
         <label class="control-label col-sm-2"></label>
         <div class="col-sm-2">
