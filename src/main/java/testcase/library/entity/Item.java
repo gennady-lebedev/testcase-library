@@ -1,6 +1,7 @@
 package testcase.library.entity;
 
 import lombok.Data;
+import testcase.library.error.IncompatibleItemStatus;
 
 import javax.persistence.*;
 
@@ -27,4 +28,10 @@ public class Item {
 
     @Column(name = "place")
     private String place;
+
+    public void setStatus(ItemStatus newStatus) {
+        if(!status.isCompatible(newStatus)) {
+            throw new IncompatibleItemStatus(this, newStatus);
+        }
+    }
 }
