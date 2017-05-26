@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="layout :: head(${item.book.title} + '#' + ${item.id})"></head>
+<head th:replace="layout :: head(${title})"></head>
 <body>
 
 <nav th:replace="layout :: navbar ('items')"></nav>
 
 <div class="container">
     <!--/*@thymesVar id="item" type="testcase.library.entity.Item"*/-->
-    <h1 th:text="${item.book.title} + '#' + ${item.id}">Item page</h1>
+    <h2 th:text="${title}">Item page</h2>
 
     <p>ID: <span th:text="${item.id}"></span></p>
-    <p>Book: <a th:href="@{/books/} + ${item.book.id}"
+    <p th:if="${item.book}">
+        Book: <a th:href="@{/books/} + ${item.book.id}"
                 th:text="${item.book.title}">Book Title</a></p>
-    <p>Status: <span th:text="${item.status}"></span></p>
-    <p sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')">
+    <p>Status: <span th:text="${item.status}" class="label label-default"></span></p>
+    <p sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')" th:if="${item.holder}">
         Holder: <a th:href="@{/users/} + ${item.holder.id}"
                     th:text="${item.holder.name}"></a></p>
     <p>Place: <span th:text="${item.place}"></span></p>
 
-    <form th:action="@{/items}" th:object="${item}" method="post" class="form-horizontal">
-        <div th:replace="layout :: objectInput('id', 'ID', 'text', *{id})"></div>
-        <div th:replace="layout :: objectSelector('book', 'Book', *{book}, ${books})"></div>
-        <div th:replace="layout :: objectInput('status', 'Status', 'text', *{status})"></div>
-        <div th:replace="layout :: objectInput('place', 'Place', 'text', *{place})"></div>
-
-
-        <div th:replace="layout :: objectButtons(@{/items/} + ${item.id})"></div>
-    </form>
+    <div sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Actions</h3>
+        </div>
+        <div class="panel-body">
+            <form th:action="@{/items/} + ${item.id} + '/delete'" th:object="${item}" method="post">
+                <input type="submit" value="Delete" class="btn btn-danger"/>
+            </form>
+            <form th:action="@{/items/} + ${item.id} + '/hide'" th:object="${item}" method="post">
+                <input type="submit" value="Hide" class="btn btn-default"/>
+            </form>
+        </div>
+    </div>
 </div>
 
 <footer th:replace="layout :: footer"></footer>
