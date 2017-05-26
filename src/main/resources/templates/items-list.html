@@ -35,7 +35,7 @@
                 </td>
                 <td sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')">
                     <a th:href="@{/users/} + ${item.holder.id}"
-                       th:text="${item.holder.name}">Bser name</a>
+                       th:text="${item.holder.name}">User name</a>
                 </td>
                 <td th:text="${item.place}">place</td>
             </tr>
