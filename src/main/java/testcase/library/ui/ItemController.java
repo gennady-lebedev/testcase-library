@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import testcase.library.entity.Book;
 import testcase.library.entity.Item;
+import testcase.library.entity.ItemStatus;
 import testcase.library.entity.User;
 import testcase.library.repository.BookRepository;
 import testcase.library.repository.ItemLogRepository;
@@ -33,6 +34,10 @@ public class ItemController {
         model.addAttribute("books", bookRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("item", item);
+        for(ItemStatus status: ItemStatus.values()) {
+            model.addAttribute(status.name(), status);
+        }
+
         if(item.getBook() != null) {
             model.addAttribute("title", item.getBook().getTitle() + "#" + item.getId()) ;
         } else {

@@ -14,7 +14,7 @@
     <p th:if="${item.book}">
         Book: <a th:href="@{/books/} + ${item.book.id}"
                 th:text="${item.book.title}">Book Title</a></p>
-    <p>Status: <span th:text="${item.status}" class="label label-default"></span></p>
+    <p>Status: <span th:text="${item.status}" th:class="'label label-'+${item.status.cssClass}"></span></p>
     <p sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')" th:if="${item.holder}">
         Holder: <a th:href="@{/users/} + ${item.holder.id}"
                     th:text="${item.holder.name}"></a></p>
@@ -26,21 +26,26 @@
         </div>
         <div class="panel-body">
             <form th:action="@{/items/} + ${item.id} + '/delete'" th:object="${item}" method="post">
-                <input type="submit" value="Delete" class="btn btn-danger"/>
+                <!--/*@thymesVar id="DELETED" type="testcase.library.entity.ItemStatus"*/-->
+                <input type="submit" value="Delete" th:class="'btn btn-'+${DELETED.cssClass}"/>
             </form>
             <form th:action="@{/items/} + ${item.id} + '/hide'" th:object="${item}" method="post">
-                <input type="submit" value="Hide" class="btn btn-default"/>
+                <!--/*@thymesVar id="DRAFT" type="testcase.library.entity.ItemStatus"*/-->
+                <input type="submit" value="Hide" th:class="'btn btn-'+${DRAFT.cssClass}"/>
             </form>
             <form th:action="@{/items/} + ${item.id} + '/shelf'" th:object="${item}" method="post">
                 <input type="hidden" th:field="*{place}"/>
-                <input type="submit" value="Put on shelf" class="btn btn-primary"/>
+                <!--/*@thymesVar id="ON_SHELF" type="testcase.library.entity.ItemStatus"*/-->
+                <input type="submit" value="Put on shelf" th:class="'btn btn-'+${ON_SHELF.cssClass}"/>
             </form>
             <form th:action="@{/items/} + ${item.id} + '/give'" th:object="${item}" method="post">
                 <input type="hidden" name="user" value="1"/>
-                <input type="submit" value="Give" class="btn btn-info"/>
+                <!--/*@thymesVar id="ON_HANDS" type="testcase.library.entity.ItemStatus"*/-->
+                <input type="submit" value="Give" th:class="'btn btn-'+${ON_HANDS.cssClass}"/>
             </form>
             <form th:action="@{/items/} + ${item.id} + '/return'" th:object="${item}" method="post">
-                <input type="submit" value="Return" class="btn btn-warning"/>
+                <!--/*@thymesVar id="RETURNED" type="testcase.library.entity.ItemStatus"*/-->
+                <input type="submit" value="Return" th:class="'btn btn-'+${RETURNED.cssClass}"/>
             </form>
         </div>
     </div>
