@@ -29,9 +29,10 @@ public class Item {
     @Column(name = "place")
     private String place;
 
-    public void setStatus(ItemStatus newStatus) {
-        if(!status.isCompatible(newStatus)) {
-            throw new IncompatibleItemStatus(this, newStatus);
+    public void setStatus(ItemStatus status) {
+        if(this.status != null && !this.status.isCompatible(status)) {
+            throw new IncompatibleItemStatus(this, status);
         }
+        this.status = status;
     }
 }
