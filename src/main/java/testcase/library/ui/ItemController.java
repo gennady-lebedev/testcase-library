@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import testcase.library.entity.Book;
 import testcase.library.entity.Item;
 import testcase.library.entity.User;
@@ -47,7 +48,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/{id}/book", method = RequestMethod.POST)
-    public String updateBook(@PathVariable("id") Long itemId, Long bookId) {
+    public String updateBook(@PathVariable("id") Long itemId, @RequestParam("book") Long bookId) {
         Item item = itemRepository.getById(itemId);
         Book book = bookRepository.getById(bookId);
         return "redirect:/items/" + itemService.updateBook(item, book).getId();
@@ -60,7 +61,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/{id}/give", method = RequestMethod.POST)
-    public String giveItem(@PathVariable("id") Long itemId, Long userId) {
+    public String giveItem(@PathVariable("id") Long itemId, @RequestParam("user") Long userId) {
         Item item = itemRepository.getById(itemId);
         User user = userRepository.getById(userId);
         return "redirect:/items/" + itemService.giveItem(item, user).getId();
@@ -73,7 +74,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/{id}/shelf", method = RequestMethod.POST)
-    public String putOnShelf(@PathVariable("id") Long itemId, String place) {
+    public String putOnShelf(@PathVariable("id") Long itemId, @RequestParam("place") String place) {
         Item item = itemRepository.getById(itemId);
         return "redirect:/items/" + itemService.putOnShelf(item, place).getId();
     }
