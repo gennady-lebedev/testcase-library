@@ -3,6 +3,7 @@ package testcase.library.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,12 +19,15 @@ public class ItemLog {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    private ItemStatus status;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User who; // operator/librarian/admin only
+    @JoinColumn(name = "holder")
+    private User holder;
 
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date when;
+    @ManyToOne
+    @JoinColumn(name = "made_by")
+    private User madeBy;
 
-    private String what;
+    private LocalDateTime timestamp;
 }

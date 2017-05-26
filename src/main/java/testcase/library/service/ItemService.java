@@ -59,7 +59,7 @@ public class ItemService {
 
     public void purgeItem(Item item) {
         if(item.getStatus() == ItemStatus.DELETED) {
-            if(logRepository.countAllByItem(item) == 0) {
+            if(logRepository.countAllByItemAndStatusNot(item, ItemStatus.DRAFT) == 0) {
                 itemRepository.delete(item);
             }
         }
