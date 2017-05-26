@@ -18,15 +18,29 @@
     </p>
     <p>ISBN: <span th:text="${book.isbn}"></span></p>
 
-    <form th:action="@{/books/}" th:object="${book}" method="post" class="form-horizontal">
-        <div th:replace="layout :: formInput('id', 'ID', 'text', *{id})"></div>
-        <div th:replace="layout :: formInput('title', 'Title', 'text', *{title})"></div>
-        <div th:replace="layout :: objectSelector('publisher', 'Publisher', *{publisher}, ${publishers})"></div>
-        <div th:replace="layout :: objectMultiSelector('authors', 'Authors', *{authors}, ${authors})"></div>
-        <div th:replace="layout :: formInput('isbn', 'ISBN', 'text', *{isbn})"></div>
 
-        <div th:replace="layout :: objectButtons(@{/books/} + ${book.id})"></div>
-    </form>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Actions</h3>
+        </div>
+        <div class="panel-body">
+            <form th:action="@{/books/}" th:object="${book}" method="post" class="form-horizontal">
+                <div th:replace="layout :: formInput('id', 'ID', 'text', *{id})"></div>
+                <div th:replace="layout :: formInput('title', 'Title', 'text', *{title})"></div>
+                <div th:replace="layout :: objectSelector('publisher', 'Publisher', *{publisher}, ${publishers})"></div>
+                <div th:replace="layout :: objectMultiSelector('authors', 'Authors', *{authors}, ${authors})"></div>
+                <div th:replace="layout :: formInput('isbn', 'ISBN', 'text', *{isbn})"></div>
+
+                <div th:replace="layout :: objectButtons(@{/books/} + ${book.id})"></div>
+            </form>
+
+            <form th:action="@{/items/make}" th:object="${book}" method="post">
+                <input type="hidden" name="book" th:value="*{id}"/>
+                <input type="submit" value="Make an item" class="btn btn-default"/>
+            </form>
+        </div>
+    </div>
 </div>
 
 <footer th:replace="layout :: footer"></footer>

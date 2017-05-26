@@ -47,16 +47,9 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/make", method = RequestMethod.POST)
-    public String makeDraft(Long bookId) {
+    public String makeDraft(@RequestParam("book") Long bookId) {
         Book book = bookRepository.getById(bookId);
         return "redirect:/items/" + itemService.makeDraft(book).getId();
-    }
-
-    @RequestMapping(value = "/{id}/book", method = RequestMethod.POST)
-    public String updateBook(@PathVariable("id") Long itemId, @RequestParam("book") Long bookId) {
-        Item item = itemRepository.getById(itemId);
-        Book book = bookRepository.getById(bookId);
-        return "redirect:/items/" + itemService.updateBook(item, book).getId();
     }
 
     @RequestMapping(value = "/{id}/hide", method = RequestMethod.POST)
