@@ -30,7 +30,9 @@
                     <a th:href="@{/books/} + ${item.book.id}"
                        th:text="${item.book.title}">Book link</a>
                 </td>
-                <td th:text="${item.status}">STATUS</td>
+                <td>
+                    <span th:text="${item.status}" th:class="'label label-'+${item.status.cssClass}">STATUS</span>
+                </td>
                 <td sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')">
                     <a th:href="@{/users/} + ${item.holder.id}"
                        th:text="${item.holder.name}">Bser name</a>
