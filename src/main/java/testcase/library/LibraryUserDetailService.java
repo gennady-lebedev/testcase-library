@@ -44,6 +44,10 @@ public class LibraryUserDetailService implements UserDetailsService {
         if(role == null)
             role = UserRoles.READER;
 
-        return AuthorityUtils.createAuthorityList(role.getRoleName());
+        if(role == UserRoles.ADMIN) {
+            return AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_LIBRARIAN");
+        } else {
+            return AuthorityUtils.createAuthorityList(role.getRoleName());
+        }
     }
 }
