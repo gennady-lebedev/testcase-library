@@ -4,7 +4,7 @@
 <body>
 
 <nav th:replace="layout :: navbar ('logs')"></nav>
-
+<!--/*@thymesVar id="logs" type="java.util.List<testcase.library.entity.ItemLog>"*/-->
 <div class="container">
     <h1>Items list</h1>
 
@@ -13,12 +13,14 @@
         <tr>
             <th>#</th>
             <th>Item</th>
-            <th>Approved by</th>
-            <th>When</th>
+            <th>Status</th>
+            <th>Holder</th>
+            <th>Return until</th>
+            <th>Made by</th>
+            <th>Timestamp</th>
         </tr>
         </thead>
         <tbody>
-        <!--/*@thymesVar id="logs" type="java.util.List<testcase.library.entity.ItemLog>"*/-->
             <tr th:each="log: ${logs}">
                 <td th:text="${log.id}">ID</td>
                 <td>
@@ -26,10 +28,18 @@
                        th:text="${log.item.book.title} + ' #' + ${log.item.id}">Item link</a>
                 </td>
                 <td>
-                    <a th:href="@{/users/} + ${log.who.id}"
-                       th:text="${log.who.name}">Approved by</a>
+                    <span th:text="${log.status}" th:class="'label label-'+${log.status.cssClass}">status</span>
                 </td>
-                <td th:text="${log.when}">When</td>
+                <td>
+                    <a th:if="${log.holder}" th:href="@{/users/} + ${log.holder.id}"
+                       th:text="${log.holder.name}">Holder</a>
+                </td>
+                <td th:text="${log.nextTime}">Return until</td>
+                <td>
+                    <a th:if="${log.madeBy}" th:href="@{/users/} + ${log.madeBy.id}"
+                       th:text="${log.madeBy.name}">Made by</a>
+                </td>
+                <td th:text="${log.timestamp}">Timestamp</td>
             </tr>
         </tbody>
     </table>

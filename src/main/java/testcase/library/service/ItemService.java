@@ -13,6 +13,8 @@ import testcase.library.repository.ItemRepository;
 
 @Service
 public class ItemService {
+
+    @ItemAudit
     public Item makeDraft(Book book) {
         Item item = new Item();
         item.setBook(book);
@@ -27,23 +29,27 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
+    @ItemAudit
     public Item hideItem(Item item) {
         item.setStatus(ItemStatus.DRAFT);
         return itemRepository.save(item);
     }
 
+    @ItemAudit
     public Item giveItem(Item item, User user) {
         item.setStatus(ItemStatus.ON_HANDS);
         item.setHolder(user);
         return itemRepository.save(item);
     }
 
+    @ItemAudit
     public Item returnItem(Item item) {
         item.setStatus(ItemStatus.RETURNED);
         item.setHolder(null);
         return itemRepository.save(item);
     }
 
+    @ItemAudit
     public Item putOnShelf(Item item, String place) {
         item.setStatus(ItemStatus.ON_SHELF);
         if(place != null && !place.equals(item.getPlace())) {
@@ -52,6 +58,7 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
+    @ItemAudit
     public Item deleteItem(Item item) {
         item.setStatus(ItemStatus.DELETED);
         return itemRepository.save(item);
