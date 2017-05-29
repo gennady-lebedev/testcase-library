@@ -1,4 +1,4 @@
-package testcase.library;
+package testcase.library.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,22 +32,6 @@ public class LibraryUserDetailService implements UserDetailsService {
                     username + "' does not exist");
 
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getName(),
-                user.getPassword(),
-                getAuthorities(user)
-        );
-    }
-
-    private List<GrantedAuthority> getAuthorities(User user) {
-        UserRoles role = user.getRole();
-        if(role == null)
-            role = UserRoles.READER;
-
-        if(role == UserRoles.ADMIN) {
-            return AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_LIBRARIAN");
-        } else {
-            return AuthorityUtils.createAuthorityList(role.getRoleName());
-        }
+        return new LibraryUserDetail(user);
     }
 }
