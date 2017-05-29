@@ -3,8 +3,8 @@ package testcase.library.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "item_logs")
@@ -19,10 +19,11 @@ public class ItemLog {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    @Column(name = "item_status")
     private ItemStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "holder")
+    @JoinColumn(name = "item_holder")
     private User holder;
 
     @ManyToOne
@@ -30,4 +31,7 @@ public class ItemLog {
     private User madeBy;
 
     private LocalDateTime timestamp;
+
+    @Column(name = "next_time")
+    private LocalDate nextTime;
 }

@@ -52,10 +52,11 @@ CREATE TABLE IF NOT EXISTS items (
 CREATE TABLE IF NOT EXISTS item_logs (
   id SERIAL PRIMARY KEY,
   item_id INTEGER NOT NULL,
-  status VARCHAR(20) NOT NULL,
-  holder INTEGER,
-  made_by INTEGER NOT NULL,
+  item_status VARCHAR(20) NOT NULL,
+  item_holder INTEGER,
+  made_by INTEGER,
   timestamp TIMESTAMP,
+  next_time DATE,
   FOREIGN KEY (item_id) REFERENCES items,
   FOREIGN KEY (made_by) REFERENCES users
 );
