@@ -18,7 +18,11 @@ public class LogService {
         log.setStatus(item.getStatus());
         log.setHolder(item.getHolder());
         log.setTimestamp(LocalDateTime.now());
-        log.setNextTime(LocalDate.now().plusDays(10));
+        if (item.getStatus() == ItemStatus.ON_HANDS) {
+            log.setNextTime(LocalDate.now().plusDays(10));
+        } else if(item.getStatus() == ItemStatus.RETURNED) {
+            log.setNextTime(LocalDate.now().plusDays(1));
+        }
         log.setMadeBy(user);
         repository.save(log);
     }
