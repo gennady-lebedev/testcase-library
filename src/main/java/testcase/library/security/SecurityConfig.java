@@ -3,6 +3,7 @@ package testcase.library.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/user").authenticated()
+                .antMatchers(HttpMethod.POST,"/items", "/items/**").authenticated()
                 .antMatchers("/users**").hasAnyRole("ADMIN", "LIBRARIAN")
                 .antMatchers("/**").permitAll()
                 .antMatchers("/css/**").permitAll()

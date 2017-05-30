@@ -19,6 +19,7 @@
         Holder: <a th:href="@{/users/} + ${item.holder.id}"
                     th:text="${item.holder.name}"></a></p>
     <p>Place: <span th:text="${item.place}"></span></p>
+    <p th:if="${item.dueDate}">Due date: <span th:text="${item.dueDate}"></span></p>
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -52,7 +53,15 @@
                     <input type="submit" value="Give" th:class="'btn btn-'+${ON_HANDS.cssClass} + ' pull-right'"/>
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" name="user" value="1" class="form-control"/>
+                    <select name="user" title="user" class="selectpicker form-control" data-live-search="true">
+                        <option
+                                th:each="u: ${users}"
+                                th:text="${u.name}"
+                                th:value="${u.id}"
+                                th:selected="${item.holder} != null ? ${item.holder} == ${u}">
+                            option
+                        </option>
+                    </select>
                 </div>
             </form>
             <form th:action="@{/items/} + ${item.id} + '/return'" th:object="${item}" method="post" class="form-group">

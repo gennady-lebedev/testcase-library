@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import testcase.library.entity.Item;
+import testcase.library.error.LibraryException;
 import testcase.library.security.LibraryUserDetail;
 
 @Aspect
@@ -17,8 +18,17 @@ public class LogItemAdvice {
 
     @AfterReturning(pointcut = "getPointcut()", returning = "item")
     public void logItem(Item item) {
-        LibraryUserDetail principal = (LibraryUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        service.logItem(item, principal.getUser());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal instanceof LibraryUserDetail) {
+            LibraryUserDetail userDetail = (LibraryUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            service.logItem(item, userDetail.getUser());
+        } else {
+            throw new LibraryException(
+                    "Unauthorized access to the item #" + item.getId(),
+                    "item",
+                    item.getId()
+            );
+        }
     }
 
     private final LogService service;
