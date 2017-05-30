@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Error')"></head>
+<body>
+
+<nav th:replace="layout :: navbar ('error')"></nav>
+
+<div class="container">
+    <h2>Error</h2>
+    <p>Page not found
+        <span th:if="${type}" th:text="${type} + '#' + ${id}">type</span>
+    </p>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

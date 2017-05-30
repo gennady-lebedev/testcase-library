@@ -5,7 +5,7 @@ import testcase.library.entity.Item;
 import testcase.library.entity.ItemStatus;
 
 @Getter
-public class IncompatibleItemStatus extends RuntimeException {
+public class IncompatibleItemStatus extends LibraryException {
     private Item item;
     private ItemStatus newStatus;
 
@@ -15,7 +15,7 @@ public class IncompatibleItemStatus extends RuntimeException {
                 item.getId(),
                 item.getStatus(),
                 newStatus
-        ));
+        ), "item", item.getId());
         this.item = item;
         this.newStatus = newStatus;
     }
