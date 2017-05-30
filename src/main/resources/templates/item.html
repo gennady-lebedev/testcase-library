@@ -24,28 +24,42 @@
         <div class="panel-heading">
             <h3 class="panel-title">Actions</h3>
         </div>
-        <div class="panel-body">
-            <form th:action="@{/items/} + ${item.id} + '/delete'" th:object="${item}" method="post">
+        <div class="panel-body form-horizontal">
+            <form th:action="@{/items/} + ${item.id} + '/delete'" th:object="${item}" method="post" class="form-group">
                 <!--/*@thymesVar id="DELETED" type="testcase.library.entity.ItemStatus"*/-->
-                <input type="submit" value="Delete" th:class="'btn btn-'+${DELETED.cssClass}"/>
+                <div class="col-sm-2">
+                    <input type="submit" value="Delete" th:class="'btn btn-'+${DELETED.cssClass} + ' pull-right'"/>
+                </div>
             </form>
-            <form th:action="@{/items/} + ${item.id} + '/hide'" th:object="${item}" method="post">
+            <form th:action="@{/items/} + ${item.id} + '/hide'" th:object="${item}" method="post" class="form-group">
                 <!--/*@thymesVar id="DRAFT" type="testcase.library.entity.ItemStatus"*/-->
-                <input type="submit" value="Hide" th:class="'btn btn-'+${DRAFT.cssClass}"/>
+                <div class="col-sm-2">
+                    <input type="submit" value="Hide" th:class="'btn btn-'+${DRAFT.cssClass} + ' pull-right'"/>
+                </div>
             </form>
-            <form th:action="@{/items/} + ${item.id} + '/shelf'" th:object="${item}" method="post">
-                <input type="hidden" th:field="*{place}"/>
+            <form th:action="@{/items/} + ${item.id} + '/shelf'" th:object="${item}" method="post" class="form-group">
                 <!--/*@thymesVar id="ON_SHELF" type="testcase.library.entity.ItemStatus"*/-->
-                <input type="submit" value="Put on shelf" th:class="'btn btn-'+${ON_SHELF.cssClass}"/>
+                <div class="col-sm-2">
+                    <input type="submit" value="Put on shelf" th:class="'btn btn-'+${ON_SHELF.cssClass} + ' pull-right'"/>
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" th:field="*{place}" class="form-control"/>
+                </div>
             </form>
-            <form th:action="@{/items/} + ${item.id} + '/give'" th:object="${item}" method="post">
-                <input type="hidden" name="user" value="1"/>
+            <form th:action="@{/items/} + ${item.id} + '/give'" th:object="${item}" method="post" class="form-group">
                 <!--/*@thymesVar id="ON_HANDS" type="testcase.library.entity.ItemStatus"*/-->
-                <input type="submit" value="Give" th:class="'btn btn-'+${ON_HANDS.cssClass}"/>
+                <div class="col-sm-2">
+                    <input type="submit" value="Give" th:class="'btn btn-'+${ON_HANDS.cssClass} + ' pull-right'"/>
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" name="user" value="1" class="form-control"/>
+                </div>
             </form>
-            <form th:action="@{/items/} + ${item.id} + '/return'" th:object="${item}" method="post">
+            <form th:action="@{/items/} + ${item.id} + '/return'" th:object="${item}" method="post" class="form-group">
                 <!--/*@thymesVar id="RETURNED" type="testcase.library.entity.ItemStatus"*/-->
-                <input type="submit" value="Return" th:class="'btn btn-'+${RETURNED.cssClass}"/>
+                <div class="col-sm-2">
+                    <input type="submit" value="Return" th:class="'btn btn-'+${RETURNED.cssClass} + ' pull-right'"/>
+                </div>
             </form>
         </div>
     </div>
