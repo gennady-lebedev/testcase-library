@@ -24,13 +24,6 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public Item updateBook(Item item, Book book) {
-        if(item.getStatus() == ItemStatus.ON_HANDS)
-            throw new IncompatibleItemStatus(item, ItemStatus.ON_HANDS); //TODO change exception
-        item.setBook(book);
-        return itemRepository.save(item);
-    }
-
     @ItemAudit
     public Item hideItem(Item item) {
         item.setStatus(ItemStatus.DRAFT);
