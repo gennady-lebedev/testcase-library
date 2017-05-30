@@ -11,6 +11,8 @@ import testcase.library.error.IncompatibleItemStatus;
 import testcase.library.repository.ItemLogRepository;
 import testcase.library.repository.ItemRepository;
 
+import java.time.LocalDate;
+
 @Service
 public class ItemService {
 
@@ -32,6 +34,7 @@ public class ItemService {
     @ItemAudit
     public Item hideItem(Item item) {
         item.setStatus(ItemStatus.DRAFT);
+        item.setDueDate(null);
         return itemRepository.save(item);
     }
 
@@ -39,6 +42,7 @@ public class ItemService {
     public Item giveItem(Item item, User user) {
         item.setStatus(ItemStatus.ON_HANDS);
         item.setHolder(user);
+        item.setDueDate(LocalDate.now().plusDays(10));
         return itemRepository.save(item);
     }
 
@@ -46,12 +50,14 @@ public class ItemService {
     public Item returnItem(Item item) {
         item.setStatus(ItemStatus.RETURNED);
         item.setHolder(null);
+        item.setDueDate(LocalDate.now().plusDays(1));
         return itemRepository.save(item);
     }
 
     @ItemAudit
     public Item putOnShelf(Item item, String place) {
         item.setStatus(ItemStatus.ON_SHELF);
+        item.setDueDate(null);
         if(place != null && !place.equals(item.getPlace())) {
             item.setPlace(place);
         }
