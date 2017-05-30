@@ -1,5 +1,7 @@
 package testcase.library.ui;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 class GlobalDefaultExceptionHandler {
+    private static final Logger log = LoggerFactory.getLogger(GlobalDefaultExceptionHandler.class);
     public static final String DEFAULT_ERROR_VIEW = "error";
 
     @ExceptionHandler(value = Exception.class)
@@ -29,6 +32,7 @@ class GlobalDefaultExceptionHandler {
             mav.addObject("id", le.getId());
         }
         mav.setViewName(DEFAULT_ERROR_VIEW);
+        log.error("Exception handled in request {}: ",req, e);
         return mav;
     }
 }
