@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS items (
   status VARCHAR(20) NOT NULL,
   user_id INTEGER,
   place VARCHAR(50),
+  due_date DATE,
   FOREIGN KEY (book_id) REFERENCES books,
   FOREIGN KEY (user_id) REFERENCES users
 );
@@ -54,9 +55,9 @@ CREATE TABLE IF NOT EXISTS item_logs (
   item_id INTEGER NOT NULL,
   item_status VARCHAR(20) NOT NULL,
   item_holder INTEGER,
+  item_due_date DATE,
   made_by INTEGER,
   timestamp TIMESTAMP,
-  next_time DATE,
   FOREIGN KEY (item_id) REFERENCES items,
   FOREIGN KEY (made_by) REFERENCES users
 );

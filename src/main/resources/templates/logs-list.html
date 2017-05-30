@@ -34,7 +34,7 @@
                     <a th:if="${log.holder}" th:href="@{/users/} + ${log.holder.id}"
                        th:text="${log.holder.name}">Holder</a>
                 </td>
-                <td th:text="${log.nextTime}">Return until</td>
+                <td th:text="${log.dueDate}">Return until</td>
                 <td>
                     <a th:if="${log.madeBy}" th:href="@{/users/} + ${log.madeBy.id}"
                        th:text="${log.madeBy.name}">Made by</a>

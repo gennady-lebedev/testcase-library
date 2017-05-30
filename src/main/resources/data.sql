@@ -37,8 +37,8 @@ INSERT INTO users (id, name, password, role) VALUES
 ON CONFLICT DO NOTHING;
 ALTER SEQUENCE users_id_seq RESTART WITH 5;
 
-INSERT INTO items (id, book_id, status, user_id, place) VALUES
-  (1, 1, 'DRAFT', NULL, NULL)
+INSERT INTO items (id, book_id, status, user_id, place, due_date) VALUES
+  (1, 1, 'DRAFT', NULL, '3-rd shelf', '01-01-2017')
 ON CONFLICT DO NOTHING;
 COMMIT;
 ALTER SEQUENCE items_id_seq RESTART WITH 2;

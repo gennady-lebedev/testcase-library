@@ -26,12 +26,12 @@ public class ItemLog {
     @JoinColumn(name = "item_holder")
     private User holder;
 
+    @Column(name = "item_due_date")
+    private LocalDate dueDate;
+
     @ManyToOne
     @JoinColumn(name = "made_by")
     private User madeBy;
 
     private LocalDateTime timestamp;
-
-    @Column(name = "next_time")
-    private LocalDate nextTime;
 }

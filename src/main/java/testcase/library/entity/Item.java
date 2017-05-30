@@ -4,6 +4,7 @@ import lombok.Data;
 import testcase.library.error.IncompatibleItemStatus;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -29,6 +30,9 @@ public class Item {
 
     @Column(name = "place")
     private String place;
+
+    @Column(name = "due_date")
+    private LocalDate dueDate;
 
     public void setStatus(ItemStatus status) {
         if(this.status != null && !this.status.isCompatible(status)) {

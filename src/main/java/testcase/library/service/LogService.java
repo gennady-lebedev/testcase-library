@@ -3,11 +3,9 @@ package testcase.library.service;
 import org.springframework.stereotype.Service;
 import testcase.library.entity.Item;
 import testcase.library.entity.ItemLog;
-import testcase.library.entity.ItemStatus;
 import testcase.library.entity.User;
 import testcase.library.repository.ItemLogRepository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -17,12 +15,8 @@ public class LogService {
         log.setItem(item);
         log.setStatus(item.getStatus());
         log.setHolder(item.getHolder());
+        log.setDueDate(item.getDueDate());
         log.setTimestamp(LocalDateTime.now());
-        if (item.getStatus() == ItemStatus.ON_HANDS) {
-            log.setNextTime(LocalDate.now().plusDays(10));
-        } else if(item.getStatus() == ItemStatus.RETURNED) {
-            log.setNextTime(LocalDate.now().plusDays(1));
-        }
         log.setMadeBy(user);
         repository.save(log);
     }
