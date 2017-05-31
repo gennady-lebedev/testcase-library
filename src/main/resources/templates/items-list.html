@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="layout :: head('Items list')"></head>
+<!--/*@thymesVar id="title" type="java.lang.String"*/-->
+<head th:replace="layout :: head(${title})"></head>
 <body>
 
 <nav th:replace="layout :: navbar ('items')"></nav>
-
+<!--/*@thymesVar id="items" type="java.util.List<testcase.library.entity.Item>"*/-->
 <div class="container">
-    <h1>Items list</h1>
+    <h2 th:text="${title}">Items list</h2>
 
     <table class="table table-hover">
         <thead>
@@ -17,14 +18,14 @@
             <th>Status</th>
             <th sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')">User name</th>
             <th>Place</th>
+            <th>Due Date</th>
         </tr>
         </thead>
         <tbody>
-        <!--/*@thymesVar id="items" type="java.util.List<testcase.library.entity.Item>"*/-->
             <tr th:each="item: ${items}">
                 <td>
                     <a th:href="@{/items/} + ${item.id}"
-                       th:text="'#' + ${item.id}">Item Link</a>
+                       th:text="'#' + ${item.id}">Item link</a>
                 </td>
                 <td>
                     <a th:href="@{/books/} + ${item.book.id}"
@@ -37,7 +38,8 @@
                     <a th:if="${item.holder}" th:href="@{/users/} + ${item.holder.id}"
                        th:text="${item.holder.name}">User name</a>
                 </td>
-                <td th:text="${item.place}">place</td>
+                <td th:text="${item.place}">Place</td>
+                <td th:text="${item.dueDate}">Due Date</td>
             </tr>
         </tbody>
     </table>

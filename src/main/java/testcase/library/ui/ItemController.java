@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import testcase.library.entity.Book;
 import testcase.library.entity.Item;
 import testcase.library.entity.ItemStatus;
@@ -18,12 +15,31 @@ import testcase.library.repository.ItemRepository;
 import testcase.library.repository.UserRepository;
 import testcase.library.service.ItemService;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping("/items")
 public class ItemController {
-    @RequestMapping(method = RequestMethod.GET)
-    public String getItems(Model model, Pageable pageable) {
-        model.addAttribute("items", itemRepository.findAll(pageable));
+    @GetMapping
+    public String getItems(
+            @RequestParam(name = "status", required = false) ItemStatus status,
+            Model model,
+            Pageable pageable
+    ) {
+        model.addAttribute("title", "All items");
+        if(status == null) {
+            model.addAttribute("items", itemRepository.findAll(pageable));
+        } else {
+            model.addAttribute("items", itemRepository.findAllByStatus(status, pageable));
+        }
+        return "items-list";
+    }
+
+    @GetMapping("/overdue")
+    public String getOverdueItems(Model model, Pageable pageable) {
+        model.addAttribute("title", "Overdue Items");
+        model.addAttribute("items",
+                itemRepository.findAllByStatusAndDueDateLessThan(ItemStatus.ON_HANDS, LocalDate.now(), pageable));
         return "items-list";
     }
 
