@@ -40,7 +40,7 @@ public class ItemController {
         model.addAttribute("logs", logRepository.findByItemOrderByTimestampDesc(item, pageable));
 
         if(item.getBook() != null) {
-            model.addAttribute("title", item.getBook().getTitle() + "#" + item.getId()) ;
+            model.addAttribute("title", item.getBook().getTitle() + " #" + item.getId()) ;
         } else {
             model.addAttribute("title", "New Item");
         }
