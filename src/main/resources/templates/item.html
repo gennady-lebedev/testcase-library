@@ -10,18 +10,18 @@
     <!--/*@thymesVar id="item" type="testcase.library.entity.Item"*/-->
     <h2 th:text="${title}">Item page</h2>
 
-    <p>ID: <span th:text="${item.id}"></span></p>
+    <p sec:authorize="hasRole('LIBRARIAN')">ID: <span th:text="${item.id}"></span></p>
     <p th:if="${item.book}">
         Book: <a th:href="@{/books/} + ${item.book.id}"
                 th:text="${item.book.title}">Book Title</a></p>
     <p>Status: <span th:text="${item.status}" th:class="'label label-'+${item.status.cssClass}"></span></p>
-    <p sec:authorize="hasAnyRole('LIBRARIAN', 'ADMIN')" th:if="${item.holder}">
+    <p sec:authorize="hasRole('LIBRARIAN')" th:if="${item.holder}">
         Holder: <a th:href="@{/users/} + ${item.holder.id}"
                     th:text="${item.holder.name}"></a></p>
     <p>Place: <span th:text="${item.place}"></span></p>
     <p th:if="${item.dueDate}">Due date: <span th:text="${item.dueDate}"></span></p>
 
-    <div class="panel panel-default">
+    <div sec:authorize="hasRole('LIBRARIAN')" class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Actions</h3>
         </div>
@@ -73,7 +73,9 @@
         </div>
     </div>
 
-    <div th:replace="logs-list :: logTable(${title} + ' logs', ${logs})"></div>
+    <th:block sec:authorize="hasRole('LIBRARIAN')">
+        <div th:replace="logs-list :: logTable(${title} + ' logs', ${logs})"></div>
+    </th:block>
 </div>
 
 <footer th:replace="layout :: footer"></footer>
