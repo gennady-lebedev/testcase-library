@@ -28,7 +28,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getItem(@PathVariable("id") Long id, Model model) {
+    public String getItem(@PathVariable("id") Long id, Model model, Pageable pageable) {
         Item item = itemRepository.getById(id);
 
         model.addAttribute("books", bookRepository.findAll());
@@ -37,6 +37,7 @@ public class ItemController {
         for(ItemStatus status: ItemStatus.values()) {
             model.addAttribute(status.name(), status);
         }
+        model.addAttribute("logs", logRepository.findByItemOrderByTimestampDesc(item, pageable));
 
         if(item.getBook() != null) {
             model.addAttribute("title", item.getBook().getTitle() + "#" + item.getId()) ;
